@@ -1,4 +1,4 @@
-package ec.edu.ups.poo.Servicio;
+package ec.edu.ups.poo.Service;
 import ec.edu.ups.poo.Models.ItemCarrito;
 import ec.edu.ups.poo.Models.Producto;
 import java.util.List;
