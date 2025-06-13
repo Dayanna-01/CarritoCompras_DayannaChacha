@@ -1,6 +1,8 @@
 package ec.edu.ups.poo.Service;
+
 import ec.edu.ups.poo.Models.ItemCarrito;
 import ec.edu.ups.poo.Models.Producto;
+
 import java.util.List;
 
 public interface CarritoService {
@@ -17,6 +19,4 @@ public interface CarritoService {
 
     boolean estaVacio();
 
-
 }
-
