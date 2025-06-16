@@ -1,11 +1,11 @@
-package ec.edu.ups.poo.Vista;
+package ec.edu.ups.poo;
 
-import ec.edu.ups.poo.Models.ItemCarrito;
-import ec.edu.ups.poo.Models.Producto;
-import ec.edu.ups.poo.Service.CarritoService;
-import ec.edu.ups.poo.Service.CarritoServiceImpl;
+import ec.edu.ups.poo.modelo.ItemCarrito;
+import ec.edu.ups.poo.modelo.Producto;
+import ec.edu.ups.poo.servicio.CarritoService;
+import ec.edu.ups.poo.servicio.CarritoServiceImpl;
 
-public class App {
+public class CarritoTest {
 
     public static void main(String[] args) {
 

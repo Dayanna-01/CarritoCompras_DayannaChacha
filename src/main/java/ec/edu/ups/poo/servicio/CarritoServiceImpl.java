@@ -1,14 +1,12 @@
-package ec.edu.ups.poo.Service;
+package ec.edu.ups.poo.servicio;
+import ec.edu.ups.poo.modelo.ItemCarrito;
+import ec.edu.ups.poo.modelo.Producto;
 
-import ec.edu.ups.poo.Models.ItemCarrito;
-import ec.edu.ups.poo.Models.Producto;
-
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class CarritoServiceImpl implements CarritoService {
-
     private final List<ItemCarrito> items;
 
     public CarritoServiceImpl() {

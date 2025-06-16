@@ -1,12 +1,9 @@
-package ec.edu.ups.poo.Service;
-
-import ec.edu.ups.poo.Models.ItemCarrito;
-import ec.edu.ups.poo.Models.Producto;
-
+package ec.edu.ups.poo.servicio;
+import ec.edu.ups.poo.modelo.Producto;
+import ec.edu.ups.poo.modelo.ItemCarrito;
 import java.util.List;
 
 public interface CarritoService {
-
     void agregarProducto(Producto producto, int cantidad);
 
     void eliminarProducto(int codigoProducto);
