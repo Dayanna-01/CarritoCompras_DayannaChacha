@@ -1,1 +1,52 @@
-![Imagen de WhatsApp 2025-06-12 a las 20 24 10_ab6b4d83](https://github.com/user-attachments/assets/28c00262-bb7d-4fcc-be99-6b9f49ce4019)
+# 🛒 Proyecto de Ejemplo - Carrito de Compras
+
+## 📌 Información General
+- Título: Patrones de Diseño Trabajados en Clase: MVC, DAO y Principios SOLID
+- Asignatura: Programación Orientada a Objetos (POO)
+- Carrera: Computación
+- Estudiante: Dayanna Chacha
+- Fecha: 16 de junio de 2025
+- Profesor: Ing. Gabriel Leon
+---
+
+## 🎯 Objetivo del proyecto
+
+Implementar un sistema educativo que simula un **carrito de compras**, utilizando buenas prácticas de diseño y una arquitectura desacoplada basada en **MVC** (Modelo-Vista-Controlador), **DAO** (Data Access Object) y principios de **POO** y **SOLID**.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- 💻 **Java 21**
+- 🧰 **IntelliJ IDEA** (recomendado con el plugin de diseñador gráfico de interfaces Swing)
+- ☕ **Swing** para la interfaz gráfica
+- 📦 Estructura modular basada en paquetes: `modelo`, `dao`, `controlador`, `vista`, y `servicio`
+
+---
+
+## 🧱 Patrones de Diseño aplicados
+
+- **MVC (Modelo - Vista - Controlador)**  
+  Para separar la lógica de negocio de la interfaz gráfica.
+
+- **DAO (Data Access Object)**  
+  Para desacoplar el acceso a los datos, facilitando la migración a diferentes fuentes (archivos, base de datos, etc.).
+
+- **SRP y DIP** de los principios **SOLID**  
+  Para asegurar una arquitectura mantenible, extensible y fácil de testear.
+
+---
+
+
+## 📚 Recomendaciones
+
+- Ejecutar el proyecto desde `Main.java`
+- Usar IntelliJ IDEA para aprovechar el editor visual de formularios `.form`
+- Probar con diferentes implementaciones del DAO para observar la flexibilidad del patrón
+
+---
+
+## © Créditos
+
+Desarrollado como parte de la práctica académica en **Programación Orientada a Objetos – Periodo 66**.
+
