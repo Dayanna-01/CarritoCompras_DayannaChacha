@@ -20,7 +20,7 @@ public class ProductoAnadirView extends JFrame {
         setContentPane(panelPrincipal);
         setTitle("Datos del Producto");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(300, 200);
+        setSize(800, 400);
         setLocationRelativeTo(null);
         setVisible(true);
         //pack();

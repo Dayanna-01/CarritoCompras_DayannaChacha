@@ -1,4 +1,5 @@
 package ec.edu.ups.poo.vista;
+
 import ec.edu.ups.poo.modelo.Producto;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class ProductoListaView extends JFrame {
         setContentPane(panelPrincipal);
         setTitle("Listado de Productos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
+        setSize(800, 400);
         setLocationRelativeTo(null);
         setVisible(true);
 

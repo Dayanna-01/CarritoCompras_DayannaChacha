@@ -5,7 +5,6 @@ import ec.edu.ups.poo.modelo.Producto;
 import java.util.List;
 
 public interface ProductoDAO {
-
     void crear(Producto producto);
 
     Producto buscarPorCodigo(int codigo);
@@ -17,5 +16,4 @@ public interface ProductoDAO {
     void eliminar(int codigo);
 
     List<Producto> listarTodos();
-
 }
