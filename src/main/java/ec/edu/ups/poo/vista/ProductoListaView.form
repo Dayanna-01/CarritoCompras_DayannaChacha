@@ -102,7 +102,7 @@
         <properties>
           <font name="DialogInput" size="16" style="1"/>
           <foreground color="-16777216"/>
-          <text value="LISTAR PRODUCTOS INGRESADOS"/>
+          <text value="BUSCAR PRODUCTOS INGRESADOS"/>
         </properties>
       </component>
     </children>

@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CarritoServiceImpl implements CarritoService {
+public class CarritoServiceImpl   {
     private final List<ItemCarrito> items;
 
     public CarritoServiceImpl() {
         items = new ArrayList<>();
     }
 
-    @Override
+
     public void agregarProducto(Producto producto, int cantidad) {
         items.add(new ItemCarrito(producto, cantidad));
     }
 
-    @Override
+
     public void eliminarProducto(int codigoProducto) {
         Iterator<ItemCarrito> it = items.iterator();
         while (it.hasNext()) {
@@ -29,12 +29,11 @@ public class CarritoServiceImpl implements CarritoService {
         }
     }
 
-    @Override
     public void vaciarCarrito() {
         items.clear();
     }
 
-    @Override
+
     public double calcularTotal() {
         double total = 0;
         for (ItemCarrito item : items) {
@@ -43,12 +42,12 @@ public class CarritoServiceImpl implements CarritoService {
         return total;
     }
 
-    @Override
+
     public List<ItemCarrito> obtenerItems() {
         return items;
     }
 
-    @Override
+
     public boolean estaVacio() {
         return items.isEmpty();
     }
