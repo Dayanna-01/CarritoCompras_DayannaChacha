@@ -3,68 +3,57 @@ package ec.edu.ups.poo.vista;
 import ec.edu.ups.poo.controlador.ProductoController;
 import ec.edu.ups.poo.dao.ProductoDAO;
 import ec.edu.ups.poo.dao.impl.ProductoDAOMemoria;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            // Crear ventana principal
             PrincipalView principalView = new PrincipalView();
-
-            // Crear DAO
             ProductoDAO productoDAO = new ProductoDAOMemoria();
 
-            // Crear vistas internas
             ProductoAnadirView productoAnadirView = new ProductoAnadirView();
-            ProductoEliminarView productoEliminarView = new ProductoEliminarView();
             ProductoEditarView productoEditarView = new ProductoEditarView();
+            ProductoEliminarView productoEliminarView = new ProductoEliminarView();
             ProductoListaView productoListaView = new ProductoListaView();
-            CarritoAñadirView carritoView = new CarritoAñadirView();
+            /*
+            ProductoController productoController = new ProductoController(productoDAO);
+            productoController.setProductoAnadirView(productoAnadirView);
+            productoController.setProductoEditarView(productoEditarView);
+            productoController.setProductoEliminarView(productoEliminarView);
+            productoController.setProductoListaView(productoListaView);
+            */
+            ProductoController productoController = new ProductoController(productoDAO, productoAnadirView,
+                    productoListaView, productoEditarView, productoEliminarView);
 
-            // Crear controlador
-            ProductoController productoController = new ProductoController(
-                    productoDAO,
-                    productoAnadirView,
-                    productoListaView,
-                    productoEditarView,
-                    productoEliminarView
-            );
-
-            // Asociar eventos menú Crear Producto
-            principalView.getMenuItemCrearProducto().addActionListener(e -> {
-                if (!productoAnadirView.isVisible()) {
+            principalView.getMenuItemCrearProducto().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
                     principalView.getjDesktopPane().add(productoAnadirView);
-                    productoAnadirView.setVisible(true);
+                    productoAnadirView.toFront();
                 }
-                productoAnadirView.toFront();
             });
-
-            // Eliminar Producto
-            principalView.getMenuItemEliminarProducto().addActionListener(e -> {
-                if (!productoEliminarView.isVisible()) {
-                    principalView.getjDesktopPane().add(productoEliminarView);
-                    productoEliminarView.setVisible(true);
-                }
-                productoEliminarView.toFront();
-            });
-
-            // Actualizar Producto
-            principalView.getMenuItemActualizarProducto().addActionListener(e -> {
-                if (!productoEditarView.isVisible()) {
+            principalView.getMenuItemActualizarProducto().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
                     principalView.getjDesktopPane().add(productoEditarView);
-                    productoEditarView.setVisible(true);
+                    productoAnadirView.toFront();
                 }
-                productoEditarView.toFront();
             });
-
-            // Buscar Producto
-            principalView.getMenuItemBuscarProducto().addActionListener(e -> {
-                if (!productoListaView.isVisible()) {
+            principalView.getMenuItemEliminarProducto().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    principalView.getjDesktopPane().add(productoEliminarView);
+                    productoAnadirView.toFront();
+                }
+            });
+            principalView.getMenuItemBuscarProducto().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
                     principalView.getjDesktopPane().add(productoListaView);
-                    productoListaView.setVisible(true);
+                    productoAnadirView.toFront();
                 }
-                productoListaView.toFront();
             });
-
         });
     }
 }

@@ -50,7 +50,7 @@
                   <text value="Código: "/>
                 </properties>
               </component>
-              <component id="6302e" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="6302e" class="javax.swing.JTextField" binding="txtCodigo">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -58,7 +58,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="2064d" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="2064d" class="javax.swing.JTextField" binding="txtPrecio">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -69,7 +69,7 @@
                   <enabled value="false"/>
                 </properties>
               </component>
-              <component id="a9175" class="javax.swing.JButton" binding="buscarButton" default-binding="true">
+              <component id="a9175" class="javax.swing.JButton" binding="btnBuscar">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -78,7 +78,7 @@
                   <text value="Buscar"/>
                 </properties>
               </component>
-              <component id="3f563" class="javax.swing.JButton" binding="añadirButton" default-binding="true">
+              <component id="3f563" class="javax.swing.JButton" binding="btnAñadir">
                 <constraints>
                   <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -114,7 +114,7 @@
                   <text value="Nombre: "/>
                 </properties>
               </component>
-              <component id="de6c8" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+              <component id="de6c8" class="javax.swing.JTextField" binding="txtNombre">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -125,7 +125,7 @@
                   <enabled value="false"/>
                 </properties>
               </component>
-              <component id="4595b" class="javax.swing.JComboBox" binding="cbxCantidad">
+              <component id="4595b" class="javax.swing.JComboBox" binding="cbxCantidad" custom-create="true">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -172,7 +172,7 @@
               <text value="Total"/>
             </properties>
           </component>
-          <component id="b6d23" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+          <component id="b6d23" class="javax.swing.JTextField" binding="txtIva">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -183,7 +183,7 @@
               <enabled value="false"/>
             </properties>
           </component>
-          <component id="a8d5a" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+          <component id="a8d5a" class="javax.swing.JTextField" binding="txtTotal">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -194,7 +194,7 @@
               <enabled value="false"/>
             </properties>
           </component>
-          <component id="81c1" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="81c1" class="javax.swing.JTextField" binding="txtSubtotal">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -218,7 +218,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="d2f8f" class="javax.swing.JTable" binding="table1" default-binding="true">
+          <component id="d2f8f" class="javax.swing.JTable" binding="tblProductos">
             <constraints/>
             <properties/>
           </component>
@@ -234,7 +234,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="9ec5c" class="javax.swing.JButton" binding="guardarButton" default-binding="true">
+          <component id="9ec5c" class="javax.swing.JButton" binding="btnGuardar">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -243,7 +243,7 @@
               <text value="Guardar"/>
             </properties>
           </component>
-          <component id="f5c5b" class="javax.swing.JButton" binding="cancelarButton" default-binding="true">
+          <component id="f5c5b" class="javax.swing.JButton" binding="btnLimpiar">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

@@ -5,27 +5,37 @@ import javax.swing.*;
 public class PrincipalView extends JFrame {
     private JMenuBar menuBar;
     private JMenu menuProducto;
+    private JMenu menuCarrito;
     private JMenuItem menuItemCrearProducto;
     private JMenuItem menuItemEliminarProducto;
     private JMenuItem menuItemActualizarProducto;
     private JMenuItem menuItemBuscarProducto;
     private JDesktopPane jDesktopPane;
-    private JMenuItem menuItemCarrito;
+    private JMenuItem menuItemVerCarrito;
 
     public PrincipalView() {
         jDesktopPane = new JDesktopPane();
         menuBar = new JMenuBar();
-        menuProducto = new JMenu("Producto");
-        menuItemCrearProducto = new JMenuItem("Crear Producto");
-        menuItemEliminarProducto = new JMenuItem("Eliminar Producto");
-        menuItemActualizarProducto = new JMenuItem("Actualizar Producto");
-        menuItemBuscarProducto = new JMenuItem("Buscar Producto");
+        // Menú Producto
+        menuProducto = new JMenu("🛍️ Producto");
+        menuItemCrearProducto = new JMenuItem("➕ Crear Producto");
+        menuItemActualizarProducto = new JMenuItem("✏️ Actualizar Producto");
+        menuItemEliminarProducto = new JMenuItem("🗑️ Eliminar Producto");
+        menuItemBuscarProducto = new JMenuItem("🔍 Buscar Producto");
+
 
         menuBar.add(menuProducto);
         menuProducto.add(menuItemCrearProducto);
         menuProducto.add(menuItemEliminarProducto);
         menuProducto.add(menuItemActualizarProducto);
         menuProducto.add(menuItemBuscarProducto);
+
+        menuCarrito = new JMenu("🛒 Carrito");
+        menuItemVerCarrito = new JMenuItem("📋 Ver Carrito");
+        menuCarrito.add(menuItemVerCarrito);
+        menuBar.add(menuCarrito);
+
+
 
         setJMenuBar(menuBar);
         setContentPane(jDesktopPane);
@@ -75,8 +85,13 @@ public class PrincipalView extends JFrame {
         return jDesktopPane;
     }
 
-    public JMenuItem getMenuItemCarrito() {
-        return menuItemCarrito;
+    public JMenuItem getMenuItemVerCarrito() {
+        return menuItemVerCarrito;
     }
+
+    public void setMenuItemVerCarrito(JMenuItem menuItemVerCarrito) {
+        this.menuItemVerCarrito = menuItemVerCarrito;
+    }
+
 
 }
