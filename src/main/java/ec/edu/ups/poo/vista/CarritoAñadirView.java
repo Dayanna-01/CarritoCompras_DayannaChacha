@@ -3,94 +3,135 @@ package ec.edu.ups.poo.vista;
 import javax.swing.*;
 
 public class CarritoAñadirView extends JInternalFrame {
+    private JPanel panelPrincipal;
+    private JTextField txtBuscar;
     private JButton btnBuscar;
-    private JTextField txtCodigo;
     private JTextField txtNombre;
     private JTextField txtPrecio;
-    private JButton btnAñadir;
+    private JButton btnAnadir;
     private JTable tblProductos;
-    private JTextField txtSubtotal;
-    private JTextField txtIva;
+    private JTextField txtSubTotal;
+    private JTextField txtIVA;
     private JTextField txtTotal;
-    private JButton btnGuardar;
+    private JButton btnAceptar;
     private JButton btnLimpiar;
     private JComboBox cbxCantidad;
-    private JPanel PanelPrincipal;
 
-    public class carritoAñadirView extends JInternalFrame {
-        public carritoAñadirView() {
-            super("Carrito de Compras", true, true, true, true);
-            setContentPane(PanelPrincipal);
-            setSize(600, 400);
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            cargarDatos();
+    public CarritoAñadirView() {
+        super("Carrito de Compras", true,true,false,true);
+        setContentPane(panelPrincipal);
+        setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 500);
+        cargarDatos();
+    }
+    private void cargarDatos() {
+        cbxCantidad.removeAllItems();
+        for(int i = 0; i < 20; i++){
+            cbxCantidad.addItem(String.valueOf(i+1));
         }
     }
 
+    public JTextField getTxtBuscar() {
+        return txtBuscar;
+    }
 
-    private void cargarDatos(){
-        cbxCantidad.removeAllItems();
-        for(int i = 0; i < 20; i++){
-            cbxCantidad.addItem(String.valueOf(i + 1));
-        }
+    public void setTxtBuscar(JTextField txtBuscar) {
+        this.txtBuscar = txtBuscar;
     }
 
     public JButton getBtnBuscar() {
         return btnBuscar;
     }
 
-    public JTextField getTxtCodigo() {
-        return txtCodigo;
+    public void setBtnBuscar(JButton btnBuscar) {
+        this.btnBuscar = btnBuscar;
     }
 
     public JTextField getTxtNombre() {
         return txtNombre;
     }
 
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
     public JTextField getTxtPrecio() {
         return txtPrecio;
     }
 
+    public void setTxtPrecio(JTextField txtPrecio) {
+        this.txtPrecio = txtPrecio;
+    }
+
     public JButton getBtnAnadir() {
-        return btnAñadir;
+        return btnAnadir;
+    }
+
+    public void setBtnAnadir(JButton btnAnadir) {
+        this.btnAnadir = btnAnadir;
     }
 
     public JTable getTblProductos() {
         return tblProductos;
     }
 
-    public JTextField getTxtSubtotal() {
-        return txtSubtotal;
+    public void setTblProductos(JTable tblProductos) {
+        this.tblProductos = tblProductos;
     }
 
-    public JTextField getTxtIva() {
-        return txtIva;
+    public JTextField getTxtSubTotal() {
+        return txtSubTotal;
+    }
+
+    public void setTxtSubTotal(JTextField txtSubTotal) {
+        this.txtSubTotal = txtSubTotal;
+    }
+
+    public JTextField getTxtIVA() {
+        return txtIVA;
+    }
+
+    public void setTxtIVA(JTextField txtIVA) {
+        this.txtIVA = txtIVA;
     }
 
     public JTextField getTxtTotal() {
         return txtTotal;
     }
 
-    public JButton getBtnGuardar() {
-        return btnGuardar;
+    public void setTxtTotal(JTextField txtTotal) {
+        this.txtTotal = txtTotal;
+    }
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
     }
 
     public JButton getBtnLimpiar() {
-        return btnAñadir;
+        return btnLimpiar;
+    }
+
+    public void setBtnLimpiar(JButton btnLimpiar) {
+        this.btnLimpiar = btnLimpiar;
     }
 
     public JComboBox getCbxCantidad() {
         return cbxCantidad;
     }
 
-    public JPanel getPanelPrincipal() {
-        return PanelPrincipal;
+    public void setCbxCantidad(JComboBox cbxCantidad) {
+        this.cbxCantidad = cbxCantidad;
     }
 
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
-    private void createUIComponents() {
+    public void limpiarCampos() {
+        txtNombre.setText("");
+        txtPrecio.setText("");
     }
 }
