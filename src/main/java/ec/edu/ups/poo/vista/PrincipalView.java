@@ -16,6 +16,13 @@ public class PrincipalView extends JFrame {
     public PrincipalView() {
         jDesktopPane = new JDesktopPane();
         menuBar = new JMenuBar();
+        jDesktopPane = new JDesktopPane();
+        setContentPane(jDesktopPane);
+        // resto de configuración...
+        setSize(900, 600); // tamaño de la ventana principal
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
         // Menú Producto
         menuProducto = new JMenu("🛍️ Producto");
         menuItemCrearProducto = new JMenuItem("➕ Crear Producto");

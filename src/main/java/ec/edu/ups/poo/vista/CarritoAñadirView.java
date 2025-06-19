@@ -17,15 +17,16 @@ public class CarritoAñadirView extends JInternalFrame {
     private JComboBox cbxCantidad;
     private JPanel PanelPrincipal;
 
-    public CarritoAñadirView(){
-
-        super("Carrito de Compras", true, true, false, true);
-        setContentPane(PanelPrincipal);
-        setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        setSize(500, 500);
-        cargarDatos();
-
+    public class carritoAñadirView extends JInternalFrame {
+        public carritoAñadirView() {
+            super("Carrito de Compras", true, true, true, true);
+            setContentPane(PanelPrincipal);
+            setSize(600, 400);
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            cargarDatos();
+        }
     }
+
 
     private void cargarDatos(){
         cbxCantidad.removeAllItems();
