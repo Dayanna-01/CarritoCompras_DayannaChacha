@@ -121,5 +121,4 @@ public class CarritoController {
         actualizarTotales();
         carritoView.limpiarCampos();
     }
-
 }

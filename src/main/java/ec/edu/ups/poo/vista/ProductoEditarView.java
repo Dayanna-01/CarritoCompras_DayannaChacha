@@ -31,7 +31,6 @@ public class ProductoEditarView extends JInternalFrame{
         setResizable(true);
         setIconifiable(true);
 
-
     }
 
     public JTextField getTxtBuscar() {
