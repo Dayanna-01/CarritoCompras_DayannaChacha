@@ -1,30 +1,31 @@
 package ec.edu.ups.poo.modelo;
 
 public class Usuario {
-    private String userName;
-    private String contraseña;
+    private String username;
+    private String contrasenia;
     private Rol rol;
 
-    public Usuario(String nombreDelUsuario, String contraseña, Rol rol) {
-        this.userName = nombreDelUsuario;
-        this.contraseña = contraseña;
+    public Usuario(String nombreDeUsuario, String contrasenia, Rol rol) {
+        this.username = nombreDeUsuario;
+        this.contrasenia = contrasenia;
         this.rol = rol;
     }
+    public Usuario() {}
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public Rol getRol() {
@@ -33,13 +34,5 @@ public class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "nombreDelUsuario='" + userName + '\'' +
-                ", contraseña='" + contraseña + '\'' +
-                ", rol=" + rol + '}';
     }
 }

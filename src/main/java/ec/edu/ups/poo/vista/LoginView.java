@@ -1,67 +1,61 @@
 package ec.edu.ups.poo.vista;
 
-import ec.edu.ups.poo.modelo.Usuario;
-import ec.edu.ups.poo.dao.UsuarioDao;
-import ec.edu.ups.poo.dao.impl.UsuarioDAOMemoria;
-
 import javax.swing.*;
 
-public class LoginView extends JDialog {
-
-    private JTextField textUsuario;
-    private JPasswordField txtcontraseña;
-    private JButton iniciarButton;
-    private JButton btnCancelar;
+public class LoginView extends JFrame{
     private JPanel panelPrincipal;
+    private JTextField txtUsername;
+    private JPasswordField txtContrasenia;
+    private JButton btnIniciar;
+    private JButton btnRegistrar;
 
-    private UsuarioDao usuarioDao;
-    private boolean autenticado = false;
-
-    public LoginView(JFrame parent, UsuarioDao usuarioDao) {
-        super(parent, "Iniciar Sesión", true); // true = modal
-        this.usuarioDao = usuarioDao;
-
-        setContentPane(panelPrincipal);
-        setSize(400, 250);
-        setLocationRelativeTo(parent);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-        // Eventos
-        iniciarButton.addActionListener(e -> iniciarSesion());
-        btnCancelar.addActionListener(e -> cancelarSesion());
+    public LoginView() {
+        setTitle("Iniciar Sesion");
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+        add(panelPrincipal);
     }
 
-    private void iniciarSesion() {
-        String usuario = textUsuario.getText().trim();
-        String contraseña = new String(txtcontraseña.getPassword()).trim();
-
-        if (usuario.isEmpty() || contraseña.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar usuario y contraseña.");
-            return;
-        }
-
-        usuarioDao.autenticar(usuario, contraseña);
-
-        if (usuarioDao instanceof UsuarioDAOMemoria dao) {
-            Usuario u = dao.getUsuarioAutenticado();
-            if (u != null) {
-                autenticado = true;
-                dispose(); // cerrar login
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error: DAO no compatible.");
-        }
+    public JTextField getTxtUsername() {
+        return txtUsername;
     }
 
-    private void cancelarSesion() {
-        textUsuario.setText("");
-        txtcontraseña.setText("");
-        textUsuario.requestFocus();
+    public void setTxtUsername(JTextField txtUsername) {
+        this.txtUsername = txtUsername;
     }
 
-    public boolean isAutenticado() {
-        return autenticado;
+    public JPasswordField getTxtContrasenia() {
+        return txtContrasenia;
+    }
+
+    public void setTxtContrasenia(JPasswordField txtContrasenia) {
+        this.txtContrasenia = txtContrasenia;
+    }
+
+    public JButton getBtnIniciar() {
+        return btnIniciar;
+    }
+
+    public void setBtnIniciar(JButton btnIniciar) {
+        this.btnIniciar = btnIniciar;
+    }
+
+    public JButton getBtnRegistrar() {
+        return btnRegistrar;
+    }
+
+    public void setBtnRegistrar(JButton btnRegistrar) {
+        this.btnRegistrar = btnRegistrar;
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public boolean mostrarMensajePregunta(String mensaje) {
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
     }
 }

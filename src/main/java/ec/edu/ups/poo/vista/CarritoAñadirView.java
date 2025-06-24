@@ -1,6 +1,7 @@
 package ec.edu.ups.poo.vista;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class CarritoAñadirView extends JInternalFrame {
     private JPanel panelPrincipal;
@@ -16,12 +17,19 @@ public class CarritoAñadirView extends JInternalFrame {
     private JButton btnAceptar;
     private JButton btnLimpiar;
     private JComboBox cbxCantidad;
+    private JButton btnBorrar;
 
     public CarritoAñadirView() {
         super("Carrito de Compras", true,true,false,true);
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        Object[] columnas = {"Codigo", "Nombre", "Precio", "Cantidad", "Subtotal"};
+        modelo.setColumnIdentifiers(columnas);
+        tblProductos.setModel(modelo);
+
         cargarDatos();
     }
     private void cargarDatos() {
@@ -127,9 +135,24 @@ public class CarritoAñadirView extends JInternalFrame {
         this.cbxCantidad = cbxCantidad;
     }
 
+    public JButton getBtnBorrar() {
+        return btnBorrar;
+    }
+
+    public void setBtnBorrar(JButton btnBorrar) {
+        this.btnBorrar = btnBorrar;
+    }
+
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
+    public boolean mostrarMensajePregunta(String mensaje) {
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
+    }
+
     public void limpiarCampos() {
         txtNombre.setText("");
         txtPrecio.setText("");
