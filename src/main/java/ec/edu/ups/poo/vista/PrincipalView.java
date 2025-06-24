@@ -1,6 +1,8 @@
 package ec.edu.ups.poo.vista;
 
 import javax.swing.*;
+import java.awt.*;
+import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 
 public class PrincipalView extends JFrame {
     private JMenuBar menuBar;
@@ -11,10 +13,19 @@ public class PrincipalView extends JFrame {
     private JMenuItem menuItemActualizarProducto;
     private JMenuItem menuItemBuscarProducto;
     private JDesktopPane jDesktopPane;
-
     private JMenuItem menuItemCrearCarrito;
-    public PrincipalView() {
+    private JButton btnCerrarSesion;
+    private JPanel panelInferior;
+    private MensajeInternacionalizacionHandler mensajeInternacionalizacionHandler;
+
+    public PrincipalView(){
+        // Panel principal que usará BorderLayout
+        JPanel panelPrincipal = new JPanel(new BorderLayout());
+
+        // Panel central con el área de escritorio (internas)
         jDesktopPane = new JDesktopPane();
+
+        // Barra de menú y menús
         menuBar = new JMenuBar();
 
         menuProducto = new JMenu("🛍️ Producto");
@@ -27,21 +38,31 @@ public class PrincipalView extends JFrame {
         menuItemCrearCarrito = new JMenuItem("📋 Ver Carrito");
         menuCarrito.add(menuItemCrearCarrito);
 
-        menuBar.add(menuProducto);
-        menuBar.add(menuCarrito);
+        menuCarrito.add(menuItemCrearCarrito);
         menuProducto.add(menuItemCrearProducto);
         menuProducto.add(menuItemEliminarProducto);
         menuProducto.add(menuItemActualizarProducto);
         menuProducto.add(menuItemBuscarProducto);
-
+        menuBar.add(menuProducto);
+        menuBar.add(menuCarrito);
         setJMenuBar(menuBar);
-        setContentPane(jDesktopPane);
+
+        panelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        btnCerrarSesion = new JButton("Cerrar Sesión");
+        panelInferior.add(btnCerrarSesion);
+
+        panelPrincipal.add(jDesktopPane, BorderLayout.CENTER);
+        panelPrincipal.add(panelInferior, BorderLayout.SOUTH);
+
+        setContentPane(panelPrincipal);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema Carrito de Compras");
+        setTitle("Sistema de Carrito de Compras");
         setLocationRelativeTo(null);
         setVisible(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
+
 
     public JMenuItem getMenuItemCrearProducto() {
         return menuItemCrearProducto;
@@ -93,5 +114,30 @@ public class PrincipalView extends JFrame {
 
     public void setMenuItemCrearCarrito(JMenuItem menuItemCrearCarrito) {
         this.menuItemCrearCarrito = menuItemCrearCarrito;
+    }
+
+    public JButton getBtnCerrarSesion() {
+        return btnCerrarSesion;
+    }
+
+    public void setBtnCerrarSesion(JButton btnCerrarSesion) {
+        this.btnCerrarSesion = btnCerrarSesion;
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public boolean mostrarMensajePregunta(String mensaje) {
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
+    }
+
+    public void deshabilitarMenusAdministrador() {
+        getMenuItemCrearProducto().setEnabled(false);
+        getMenuItemBuscarProducto().setEnabled(false);
+        getMenuItemActualizarProducto().setEnabled(false);
+        getMenuItemEliminarProducto().setEnabled(false);
     }
 }
