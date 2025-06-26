@@ -20,8 +20,10 @@ import java.awt.event.WindowEvent;
 public class Main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-
+            ProductoDAO productoDAO = new ProductoDAOMemoria();
+            CarritoDAO carritoDAO = new CarritoDAOMemoria();
             UsuarioDAO usuarioDAO = new UsuarioDAOMemoria();
+
             LoginView loginView = new LoginView();
             loginView.setVisible(true);
 
@@ -30,83 +32,105 @@ public class Main {
             loginView.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    Usuario usuarioAuntenticado = usuarioController.getUsuarioAutenticado();
-                    if(usuarioAuntenticado != null) {
+                    Usuario usuarioAutenticado = usuarioController.getUsuarioAutenticado();
+                    if (usuarioAutenticado != null) {
                         PrincipalView principalView = new PrincipalView();
-                        ProductoDAO productoDAO = new ProductoDAOMemoria();
-                        CarritoDAO carritoDAO = new CarritoDAOMemoria();
                         CarritoAñadirView carritoAñadirView = new CarritoAñadirView();
+                        CarritoListaView carritoListaView = new CarritoListaView();
 
                         ProductoAñadirView productoAñadirView = new ProductoAñadirView();
                         ProductoEditarView productoEditarView = new ProductoEditarView();
                         ProductoEliminarView productoEliminarView = new ProductoEliminarView();
                         ProductoListaView productoListaView = new ProductoListaView();
-                        /*
-                        ProductoController productoController = new ProductoController(ProductoDAO);
-                        productoController.setProductoAnadirView(productoAnadirView);
-                        productoController.setProductoEditarView(productoEditarView);
-                        productoController.setProductoEliminarView(productoEliminarView);
-                        productoController.setProductoListaView(productoListaView);
-                        */
-                        ProductoController productoController = new ProductoController(productoDAO, productoAñadirView,
-                                productoListaView, productoEditarView, productoEliminarView, carritoAñadirView);
 
-                        CarritoController carritoController = new CarritoController(carritoAñadirView, productoController, carritoDAO);
+                        ProductoController productoController = new ProductoController(
+                                productoDAO,
+                                productoAñadirView,
+                                productoListaView,
+                                productoEditarView,
+                                productoEliminarView,
+                                carritoAñadirView
+                        );
 
-                        principalView.mostrarMensaje("Bienvenido: " + usuarioAuntenticado.getUsername());
-                        if (usuarioAuntenticado.getRol().equals(Rol.USUARIO)) {
+                        CarritoController carritoController = new CarritoController(
+                                carritoAñadirView,
+                                productoDAO,
+                                carritoDAO,
+                                usuarioAutenticado,
+                                carritoListaView
+                        );
+
+                        principalView.mostrarMensaje("Bienvenido: " + usuarioAutenticado.getUsername());
+
+                        if (usuarioAutenticado.getRol().equals(Rol.USUARIO)) {
                             principalView.deshabilitarMenusAdministrador();
                         }
+
                         principalView.getMenuItemCrearCarrito().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                if(!carritoAñadirView.isVisible()) {
+                                if (!carritoAñadirView.isVisible()) {
                                     carritoAñadirView.setVisible(true);
                                     principalView.getjDesktopPane().add(carritoAñadirView);
                                 }
                             }
                         });
+
+                        principalView.getMenuItemListarCarrito().addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if (!carritoListaView.isVisible()) {
+                                    carritoListaView.setVisible(true);
+                                    principalView.getjDesktopPane().add(carritoListaView);
+                                }
+                            }
+                        });
+
                         principalView.getMenuItemCrearProducto().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                if(!productoAñadirView.isVisible()) {
+                                if (!productoAñadirView.isVisible()) {
                                     productoAñadirView.setVisible(true);
                                     principalView.getjDesktopPane().add(productoAñadirView);
                                 }
                             }
                         });
+
                         principalView.getMenuItemActualizarProducto().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                if(!productoEditarView.isVisible()) {
+                                if (!productoEditarView.isVisible()) {
                                     productoEditarView.setVisible(true);
                                     principalView.getjDesktopPane().add(productoEditarView);
                                 }
                             }
                         });
+
                         principalView.getMenuItemEliminarProducto().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                if(!productoEliminarView.isVisible()) {
+                                if (!productoEliminarView.isVisible()) {
                                     productoEliminarView.setVisible(true);
                                     principalView.getjDesktopPane().add(productoEliminarView);
                                 }
                             }
                         });
+
                         principalView.getMenuItemBuscarProducto().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                if(!productoListaView.isVisible()) {
+                                if (!productoListaView.isVisible()) {
                                     productoListaView.setVisible(true);
                                     principalView.getjDesktopPane().add(productoListaView);
                                 }
                             }
                         });
+
                         principalView.getBtnCerrarSesion().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 boolean confirmado = principalView.mostrarMensajePregunta("¿Desea cerrar sesión?");
-                                if(confirmado) {
+                                if (confirmado) {
                                     principalView.dispose();
                                     usuarioController.setUsuarioAutenticado(null);
                                     loginView.setVisible(true);

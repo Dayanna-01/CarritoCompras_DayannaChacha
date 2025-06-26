@@ -2,7 +2,6 @@ package ec.edu.ups.poo.vista;
 
 import javax.swing.*;
 import java.awt.*;
-import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 
 public class PrincipalView extends JFrame {
     private JMenuBar menuBar;
@@ -14,11 +13,11 @@ public class PrincipalView extends JFrame {
     private JMenuItem menuItemBuscarProducto;
     private JDesktopPane jDesktopPane;
     private JMenuItem menuItemCrearCarrito;
+    private JMenuItem menuItemListarCarrito;
     private JButton btnCerrarSesion;
     private JPanel panelInferior;
-    private MensajeInternacionalizacionHandler mensajeInternacionalizacionHandler;
 
-    public PrincipalView(){
+    public PrincipalView() {
         // Panel principal que usará BorderLayout
         JPanel panelPrincipal = new JPanel(new BorderLayout());
 
@@ -32,13 +31,16 @@ public class PrincipalView extends JFrame {
         menuItemCrearProducto = new JMenuItem("➕ Crear Producto");
         menuItemActualizarProducto = new JMenuItem("✏️ Actualizar Producto");
         menuItemEliminarProducto = new JMenuItem("🗑️ Eliminar Producto");
-        menuItemBuscarProducto = new JMenuItem("🔍 Buscar Producto");
+        menuItemBuscarProducto = new JMenuItem("🔍 Buscar Producto");;
+        menuItemCrearCarrito = new JMenuItem("🛒 Crear Carrito");
+        menuItemListarCarrito = new JMenuItem("📋 Listar Carrito");
 
         menuCarrito = new JMenu("🛒 Carrito");
         menuItemCrearCarrito = new JMenuItem("📋 Ver Carrito");
         menuCarrito.add(menuItemCrearCarrito);
 
         menuCarrito.add(menuItemCrearCarrito);
+        menuCarrito.add(menuItemListarCarrito);
         menuProducto.add(menuItemCrearProducto);
         menuProducto.add(menuItemEliminarProducto);
         menuProducto.add(menuItemActualizarProducto);
@@ -57,12 +59,19 @@ public class PrincipalView extends JFrame {
         setContentPane(panelPrincipal);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Carrito de Compras");
+        setTitle("Sistema Carrito de Compras");
         setLocationRelativeTo(null);
         setVisible(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
+    public JMenuItem getMenuItemListarCarrito() {
+        return menuItemListarCarrito;
+    }
+
+    public void setMenuItemListarCarrito(JMenuItem menuItemListarCarrito) {
+        this.menuItemListarCarrito = menuItemListarCarrito;
+    }
 
     public JMenuItem getMenuItemCrearProducto() {
         return menuItemCrearProducto;
