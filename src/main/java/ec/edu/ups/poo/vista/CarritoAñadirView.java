@@ -35,7 +35,7 @@ public class CarritoAñadirView extends JInternalFrame {
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
-
+        setVisible(false);
         modelo = new DefaultTableModel();
         tblProductos.setModel(modelo);
 
