@@ -1,4 +1,4 @@
-package ec.edu.ups.poo.servicio;
+package ec.edu.ups.poo.service;
 
 import ec.edu.ups.poo.modelo.Producto;
 import ec.edu.ups.poo.modelo.ItemCarrito;
