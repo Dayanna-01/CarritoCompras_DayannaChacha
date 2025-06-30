@@ -1,46 +1,14 @@
 package ec.edu.ups.poo;
 
+import ec.edu.ups.poo.modelo.Carrito;
 import ec.edu.ups.poo.modelo.ItemCarrito;
 import ec.edu.ups.poo.modelo.Producto;
-import ec.edu.ups.poo.servicio.CarritoServiceImpl;
-import ec.edu.ups.poo.servicio.CarritoService;
-
-import java.util.List;
 
 public class CarritoTest {
     public static void main(String[] args) {
+
         // Crear servicio de carrito
-        CarritoService carrito = new CarritoService() {
-            @Override
-            public void agregarProducto(Producto producto, int cantidad) {
-
-            }
-
-            @Override
-            public void eliminarProducto(int codigoProducto) {
-
-            }
-
-            @Override
-            public void vaciarCarrito() {
-
-            }
-
-            @Override
-            public double calcularTotal() {
-                return 0;
-            }
-
-            @Override
-            public List<ItemCarrito> obtenerItems() {
-                return List.of();
-            }
-
-            @Override
-            public boolean estaVacio() {
-                return false;
-            }
-        };
+        Carrito carrito = new Carrito();
 
         // Crear productos
         Producto p1 = new Producto(1, "Mouse", 15.0);
