@@ -13,7 +13,7 @@ public class PrincipalView extends JFrame {
     private JMenuItem menuItemEliminarProducto;
     private JMenuItem menuItemActualizarProducto;
     private JMenuItem menuItemBuscarProducto;
-    private JDesktopPane jDesktopPane;
+    private MiJDesktopPane jDesktopPane;
     private JMenuItem menuItemCrearCarrito;
     private JMenuItem menuItemListarCarrito;
     private JMenuItem menuItemEditarCarrito;
@@ -38,39 +38,34 @@ public class PrincipalView extends JFrame {
         this.usuarioAutenticado = usuarioAutenticado;
 
         JPanel panelPrincipal = new JPanel(new BorderLayout());
-
-        jDesktopPane = new JDesktopPane();
+        jDesktopPane = new MiJDesktopPane();
 
         // Barra de menú y menús
         menuBar = new JMenuBar();
-        menuProducto = new JMenu("🛒 Producto");
-        menuCarrito = new JMenu("🧺 Carrito");
-        menuSalir = new JMenu("🚪 Salir");
-        menuUsuario = new JMenu("👤 Usuario");
-        menuIdioma = new JMenu("🌐 Idioma");
+        menuCarrito = new JMenu("Carrito");
+        menuProducto = new JMenu("Producto");
+        menuUsuario = new JMenu("Usuario");
+        menuIdioma = new JMenu("Idioma");
+        menuSalir = new JMenu("Salir");
 
-        menuItemEspanol = new JMenuItem("🇪🇸 Español");
-        menuItemIngles = new JMenuItem("🇬🇧 Inglés");
-        menuItemFrances = new JMenuItem("🇫🇷 Francés");
 
-        menuItemCrearProducto = new JMenuItem("➕ Crear Producto");
-        menuItemEliminarProducto = new JMenuItem("❌ Eliminar Producto");
-        menuItemActualizarProducto = new JMenuItem("✏️ Actualizar Producto");
-        menuItemBuscarProducto = new JMenuItem("🔍 Buscar Producto");
-
-        menuItemCrearCarrito = new JMenuItem("🆕 Crear Carrito");
-        menuItemListarCarrito = new JMenuItem("📄 Listar Carrito");
-        menuItemEditarCarrito = new JMenuItem("✏️ Editar Carrito");
-        menuItemEliminarCarrito = new JMenuItem("🗑️ Eliminar Carrito");
-
-        menuItemSalir = new JMenuItem("🚫 Salir del Sistema");
-        menuItemCerrarSesion = new JMenuItem("🔒 Cerrar Sesión");
-
-        menuItemCrearUsuario = new JMenuItem("➕ Crear Usuario");
-        menuItemEliminarUsuario = new JMenuItem("❌ Eliminar Usuario");
-        menuItemEditarUsuario = new JMenuItem("✏️ Editar Usuario");
-        menuItemListarUsuario = new JMenuItem("📋 Listar Usuario");
-
+        menuItemEspanol = new JMenuItem("Español");
+        menuItemIngles = new JMenuItem("Ingles");
+        menuItemFrances = new JMenuItem("Frances");
+        menuItemCrearProducto = new JMenuItem("Crear Producto");
+        menuItemEliminarProducto = new JMenuItem("Eliminar Producto");
+        menuItemActualizarProducto = new JMenuItem("Actualizar Producto");
+        menuItemBuscarProducto = new JMenuItem("Buscar Producto");
+        menuItemCrearCarrito = new JMenuItem("Crear Carrito");
+        menuItemListarCarrito = new JMenuItem("Listar Carrito");
+        menuItemEditarCarrito = new JMenuItem("Editar Carrito");
+        menuItemEliminarCarrito = new JMenuItem("Eliminar Carrito");
+        menuItemSalir = new JMenuItem("Salir");
+        menuItemCerrarSesion = new JMenuItem("Cerrar Sesion");
+        menuItemCrearUsuario = new JMenuItem("Crear Usuario");
+        menuItemEliminarUsuario = new JMenuItem("Eliminar Usuario");
+        menuItemEditarUsuario = new JMenuItem("Editar Usuario");
+        menuItemListarUsuario = new JMenuItem("Listar Usuario");
 
         menuIdioma.add(menuItemEspanol);
         menuIdioma.add(menuItemIngles);
@@ -90,8 +85,8 @@ public class PrincipalView extends JFrame {
         menuProducto.add(menuItemActualizarProducto);
         menuProducto.add(menuItemBuscarProducto);
 
-        menuBar.add(menuProducto);
         menuBar.add(menuCarrito);
+        menuBar.add(menuProducto);
         menuBar.add(menuUsuario);
         menuBar.add(menuIdioma);
         menuBar.add(menuSalir);
@@ -102,7 +97,7 @@ public class PrincipalView extends JFrame {
         setContentPane(panelPrincipal);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Carrito de Compras");
+        setTitle("Sistema Carrito de Compras");
         setLocationRelativeTo(null);
         setVisible(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);

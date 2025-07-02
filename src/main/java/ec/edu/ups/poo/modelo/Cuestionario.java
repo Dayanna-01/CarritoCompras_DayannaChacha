@@ -13,6 +13,7 @@ public class Cuestionario {
     public Cuestionario(String username) {
         this.username = username;
         this.respuestas = new ArrayList<>();
+
     }
 
     public String getUsername() {
@@ -25,14 +26,6 @@ public class Cuestionario {
 
     public void agregarRespuesta(Respuesta respuesta) {
         respuestas.add(respuesta);
-    }
-
-    public boolean eliminarRespuestaPorId(int idPregunta) {
-        return respuestas.removeIf(r -> r.getId() == idPregunta);
-    }
-
-    public void limpiarRespuestas() {
-        respuestas.clear();
     }
 
     public Respuesta buscarRespuestaPorId(int idPregunta) {

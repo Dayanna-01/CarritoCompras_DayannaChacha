@@ -6,6 +6,7 @@ import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.List;
 
 
@@ -44,6 +45,7 @@ public class ProductoAñadirView extends JInternalFrame{
             }
         });
         cambiarIdioma();
+        inicializarImagenes();
     }
     public void mostrarProductos(List<Producto> productos) {
         for (Producto producto : productos) {
@@ -74,6 +76,23 @@ public class ProductoAñadirView extends JInternalFrame{
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
 
+    public void inicializarImagenes(){
+        URL aceptar = ProductoAñadirView.class.getClassLoader().getResource("imagenes/aceptar.png");
+        if (aceptar != null) {
+            ImageIcon iconoBtnIniciarSesion = new ImageIcon(aceptar);
+            btnAceptar.setIcon(iconoBtnIniciarSesion);
+        } else {
+            System.err.println("Error: No se ha cargado el icono de Login");
+        }
+
+        URL limpiar = ProductoAñadirView.class.getClassLoader().getResource("imagenes/limpiar.png");
+        if (limpiar != null) {
+            ImageIcon iconoBtnRegistrarse = new ImageIcon(limpiar);
+            btnLimpiar.setIcon(iconoBtnRegistrarse);
+        } else {
+            System.err.println("Error: No se ha cargado el icono de Registrarse");
+        }
+    }
 
     public JLabel getLblTitulo() {
         return lblTitulo;

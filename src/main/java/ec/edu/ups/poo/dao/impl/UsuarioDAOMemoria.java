@@ -2,40 +2,44 @@ package ec.edu.ups.poo.dao.impl;
 
 import ec.edu.ups.poo.dao.CuestionarioDAO;
 import ec.edu.ups.poo.dao.UsuarioDAO;
-import ec.edu.ups.poo.modelo.Cuestionario;
-import ec.edu.ups.poo.modelo.Respuesta;
 import ec.edu.ups.poo.modelo.Rol;
 import ec.edu.ups.poo.modelo.Usuario;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class UsuarioDAOMemoria implements UsuarioDAO {
 
     private List<Usuario> usuarios;
     private CuestionarioDAO cuestionarioDAO;
 
-    public UsuarioDAOMemoria(CuestionarioDAO cuestionarioDAO) {
+    public UsuarioDAOMemoria() {
         this.usuarios = new ArrayList<>();
         this.cuestionarioDAO = cuestionarioDAO;
 
-        crear(new Usuario("admin", "12345", Rol.ADMINISTRADOR));
-        crear(new Usuario("user", "12345", Rol.USUARIO));
+        // Usuarios por defecto con todos los campos
+        Usuario admin = new Usuario(
+                "admin",
+                "12345",
+                Rol.ADMINISTRADOR,
+                "Administrador General",
+                "0999999999",
+                new GregorianCalendar(1980, Calendar.JANUARY, 1),
+                "admin@gmail.com"
+        );
 
-        Cuestionario cuestionarioAdmin = new Cuestionario("admin");
-        List<Respuesta> preguntas = cuestionarioAdmin.preguntasPorDefecto();
-
-        preguntas.get(0).setRespuesta("Negro");
-        preguntas.get(1).setRespuesta("Kobu");
-        preguntas.get(2).setRespuesta("Churrasco");
-
-        cuestionarioAdmin.agregarRespuesta(preguntas.get(0));
-        cuestionarioAdmin.agregarRespuesta(preguntas.get(1));
-        cuestionarioAdmin.agregarRespuesta(preguntas.get(2));
-
-        cuestionarioDAO.guardar(cuestionarioAdmin);
+        Usuario user = new Usuario(
+                "user",
+                "12345",
+                Rol.USUARIO,
+                "Usuario de Prueba",
+                "0988888888",
+                new GregorianCalendar(1995, Calendar.JUNE, 15),
+                "user@gmail.com"
+        );
+        crear(admin);
+        crear(user);
     }
+
 
     @Override
     public Usuario autenticar(String username, String contrasenia) {

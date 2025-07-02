@@ -10,12 +10,13 @@ import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
 public class CarritoController {
-    private final CarritoAñadirView carritoAñadirView;
+    private final CarritoAñadirView carritoAnadirView;
     private final ProductoDAO productoDAO;
     private final Carrito carrito;
     private final CarritoDAO carritoDAO;
@@ -29,7 +30,7 @@ public class CarritoController {
     public CarritoController(CarritoAñadirView carritoView, ProductoDAO productoDAO,
                              CarritoDAO carritoDAO, Usuario usuario, CarritoListaView carritoListaView, CarritoModificarView carritoModificarView, CarritoEliminarView carritoEliminarView,
                              MensajeInternacionalizacionHandler mi) {
-        this.carritoAñadirView = carritoView;
+        this.carritoAnadirView = carritoView;
         this.productoDAO = productoDAO;
         this.carritoDAO = carritoDAO;
         this.usuario = usuario;
@@ -42,25 +43,25 @@ public class CarritoController {
         configurarEventosEnVistas();
     }
     private void configurarEventosEnVistas() {
-        carritoAñadirView.getBtnAnadir().addActionListener(new ActionListener() {
+        carritoAnadirView.getBtnAnadir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 anadirProductoACarrito();
             }
         });
-        carritoAñadirView.getBtnAceptar().addActionListener(new ActionListener() {
+        carritoAnadirView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 aceptarCarrito();
             }
         });
-        carritoAñadirView.getBtnLimpiar().addActionListener(new ActionListener() {
+        carritoAnadirView.getBtnLimpiar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiarFormulario();
             }
         });
-        carritoAñadirView.getBtnBorrar().addActionListener(new ActionListener() {
+        carritoAnadirView.getBtnBorrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 borrarItemFormulario();
@@ -111,18 +112,18 @@ public class CarritoController {
     }
 
     private void anadirProductoACarrito() {
-        int codigo = Integer.parseInt(carritoAñadirView.getTxtBuscar().getText());
+        int codigo = Integer.parseInt(carritoAnadirView.getTxtBuscar().getText());
         Producto producto = productoDAO.buscarPorCodigo(codigo);
-        int cantidad =  Integer.parseInt(carritoAñadirView.getCbxCantidad().getSelectedItem().toString());
+        int cantidad =  Integer.parseInt(carritoAnadirView.getCbxCantidad().getSelectedItem().toString());
         carrito.agregarProducto(producto, cantidad);
         actualizarTabla();
         actualizarTotales();
-        carritoAñadirView.limpiarCampos();
+        carritoAnadirView.limpiarCampos();
     }
 
     private void actualizarTabla() {
         List<ItemCarrito> items = carrito.obtenerItems();
-        DefaultTableModel modelo = (DefaultTableModel) carritoAñadirView.getTblProductos().getModel();
+        DefaultTableModel modelo = (DefaultTableModel) carritoAnadirView.getTblProductos().getModel();
         modelo.setNumRows(0);
         for (ItemCarrito item : items) {
             Locale locale = mi.getLocale();
@@ -138,14 +139,14 @@ public class CarritoController {
 
     private void actualizarTotales() {
         Locale locale = mi.getLocale();
-        carritoAñadirView.getTxtSubTotal().setText(FormateadorUtils.formatearMoneda(carrito.calcularSubtotal(), locale));
-        carritoAñadirView.getTxtIVA().setText(FormateadorUtils.formatearMoneda(carrito.calcularIVA(), locale));
-        carritoAñadirView.getTxtTotal().setText(FormateadorUtils.formatearMoneda(carrito.calcularTotal(), locale));
+        carritoAnadirView.getTxtSubTotal().setText(FormateadorUtils.formatearMoneda(carrito.calcularSubtotal(), locale));
+        carritoAnadirView.getTxtIVA().setText(FormateadorUtils.formatearMoneda(carrito.calcularIVA(), locale));
+        carritoAnadirView.getTxtTotal().setText(FormateadorUtils.formatearMoneda(carrito.calcularTotal(), locale));
     }
 
     private void aceptarCarrito() {
         if (carrito.estaVacio()) {
-            carritoAñadirView.mostrarMensaje(mi.get("carrito.msj.vacio"));
+            carritoAnadirView.mostrarMensaje(mi.get("carrito.msj.vacio"));
             return;
         }
         carrito.setUsuario(usuario);
@@ -154,41 +155,41 @@ public class CarritoController {
         String mensaje = mi.get("carrito.msj.guardado")
                 .replace("{0}", String.valueOf(carrito.getCodigo()))
                 .replace("{1}", usuario.getUsername());
-        carritoAñadirView.mostrarMensaje(mensaje);
+        carritoAnadirView.mostrarMensaje(mensaje);
 
         carrito.vaciarCarrito();
         actualizarTabla();
         actualizarTotales();
-        carritoAñadirView.limpiarCampos();
+        carritoAnadirView.limpiarCampos();
     }
 
     private void borrarItemFormulario(){
-        int filaSeleccionada = carritoAñadirView.getTblProductos().getSelectedRow();
+        int filaSeleccionada = carritoAnadirView.getTblProductos().getSelectedRow();
         if (filaSeleccionada != -1) {
-            DefaultTableModel modelo = (DefaultTableModel) carritoAñadirView.getTblProductos().getModel();
+            DefaultTableModel modelo = (DefaultTableModel) carritoAnadirView.getTblProductos().getModel();
             int codigoProducto = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 0).toString());
-            boolean confirmado = carritoAñadirView.mostrarMensajePregunta(mi.get("carrito.msj.confirmar.eliminar"));
+            boolean confirmado = carritoAnadirView.mostrarMensajePregunta(mi.get("carrito.msj.confirmar.eliminar"));
             if (confirmado) {
                 carrito.eliminarProducto(codigoProducto);
                 actualizarTabla();
                 actualizarTotales();
             }else{
-                carritoAñadirView.mostrarMensaje(mi.get("carrito.msj.cancelado"));
+                carritoAnadirView.mostrarMensaje(mi.get("carrito.msj.cancelado"));
             }
         } else {
-            carritoAñadirView.mostrarMensaje(mi.get("carrito.msj.seleccione.fila"));
+            carritoAnadirView.mostrarMensaje(mi.get("carrito.msj.seleccione.fila"));
         }
     }
 
     private void limpiarFormulario() {
-        boolean confirmado = carritoAñadirView.mostrarMensajePregunta(mi.get("carrito.msj.confirmar.vaciar"));
+        boolean confirmado = carritoAnadirView.mostrarMensajePregunta(mi.get("carrito.msj.confirmar.vaciar"));
         if (confirmado) {
             carrito.vaciarCarrito();
             actualizarTabla();
             actualizarTotales();
-            carritoAñadirView.limpiarCampos();
+            carritoAnadirView.limpiarCampos();
         }else{
-            carritoAñadirView.mostrarMensaje(mi.get("carrito.msj.vaciado"));
+            carritoAnadirView.mostrarMensaje(mi.get("carrito.msj.vaciado"));
         }
     }
 
@@ -253,10 +254,10 @@ public class CarritoController {
                 carritoDetalleView.requestFocusInWindow();
 
             } else {
-                carritoDetalleView.mostrarMensaje(mi.get("carrito.msj.no.encontrado"));
+                carritoListaView.mostrarMensaje(mi.get("carrito.msj.no.encontrado"));
             }
         } else {
-            carritoDetalleView.mostrarMensaje(mi.get("carrito.msj.seleccione.carrito"));
+            carritoListaView.mostrarMensaje(mi.get("carrito.msj.seleccione.carrito"));
         }
     }
 
@@ -374,7 +375,7 @@ public class CarritoController {
     }
 
     public void actualizarIdiomaEnVistas() {
-        carritoAñadirView.cambiarIdioma();
+        carritoAnadirView.cambiarIdioma();
         carritoListaView.cambiarIdioma();
         carritoModificarView.cambiarIdioma();
         carritoEliminarView.cambiarIdioma();

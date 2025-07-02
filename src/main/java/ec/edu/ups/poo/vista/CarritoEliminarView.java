@@ -3,10 +3,13 @@ package ec.edu.ups.poo.vista;
 import ec.edu.ups.poo.modelo.Carrito;
 import ec.edu.ups.poo.modelo.ItemCarrito;
 import ec.edu.ups.poo.modelo.Producto;
+import ec.edu.ups.poo.util.FormateadorUtils;
 import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.net.URL;
+import java.util.Locale;
 
 public class CarritoEliminarView extends JInternalFrame {
     private JTextField txtCodigo;
@@ -39,6 +42,7 @@ public class CarritoEliminarView extends JInternalFrame {
         tblProductos.setModel(modelo);
         this.mi = mi;
         cambiarIdioma();
+        inicializarImagenes();
     }
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
@@ -46,18 +50,20 @@ public class CarritoEliminarView extends JInternalFrame {
 
     public void cargarDatos(Carrito carrito) {
         modelo.setRowCount(0);
+        Locale locale = mi.getLocale();
 
-        for(ItemCarrito itemCarrito: carrito.obtenerItems()){
+        for (ItemCarrito itemCarrito : carrito.obtenerItems()) {
             Producto producto = itemCarrito.getProducto();
             Object[] fila = {
                     producto.getCodigo(),
                     producto.getNombre(),
-                    producto.getPrecio(),
-                    itemCarrito.getCantidad(),
+                    FormateadorUtils.formatearMoneda(producto.getPrecio(), locale),
+                    itemCarrito.getCantidad()
             };
             modelo.addRow(fila);
         }
     }
+
 
     public boolean mostrarMensajePregunta(String mensaje) {
         int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",
@@ -96,6 +102,24 @@ public class CarritoEliminarView extends JInternalFrame {
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
+    }
+
+    public void inicializarImagenes(){
+        URL eliminar = CarritoEliminarView.class.getClassLoader().getResource("imagenes/eliminar.png");
+        if (eliminar != null) {
+            ImageIcon iconoBtnIniciarSesion = new ImageIcon(eliminar);
+            btnEliminar.setIcon(iconoBtnIniciarSesion);
+        } else {
+            System.err.println("Error: No se ha cargado el icono de Login");
+        }
+
+        URL buscar = CarritoEliminarView.class.getClassLoader().getResource("imagenes/buscar.png");
+        if (buscar != null) {
+            ImageIcon iconoBtnRegistrarse = new ImageIcon(buscar);
+            btnBuscar.setIcon(iconoBtnRegistrarse);
+        } else {
+            System.err.println("Error: No se ha cargado el icono de Registrarse");
+        }
     }
 
     public JLabel getLblBuscarCodigo() {
