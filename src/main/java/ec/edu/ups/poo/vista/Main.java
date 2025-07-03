@@ -238,6 +238,16 @@ public class Main {
                                 carritoController.actualizarIdiomaEnVistas();
                             }
                         });
+                        principalView.getMenuItemkichwa().addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                mi.setLenguaje("kc", "kichwa");
+                                principalView.cambiarIdioma();
+                                usuarioController.actualizarIdiomaEnVistas();
+                                productoController.actualizarIdiomaEnVistas();
+                                carritoController.actualizarIdiomaEnVistas();
+                            }
+                        });
                     }
                 }
             });

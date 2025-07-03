@@ -19,6 +19,7 @@ public class UsuarioListarView extends JInternalFrame {
     private JLabel lblNombre;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
+
     public UsuarioListarView(MensajeInternacionalizacionHandler mi) {
         super("Listar Usuarios", true,true,false,true);
         setContentPane(panelPrincipal);

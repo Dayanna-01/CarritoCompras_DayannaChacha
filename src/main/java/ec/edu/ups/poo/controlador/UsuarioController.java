@@ -132,11 +132,12 @@ public class UsuarioController {
 
 
     private void cambiarIdioma() {
-        String[] clavesIdiomas = {"es", "en", "fr"};
-        String[] paisesIdiomas = {"EC", "US", "FR"};
+        String[] clavesIdiomas = {"es", "en", "fr", "qu"};
+        String[] paisesIdiomas = {"EC", "US", "FR", "EC"};
+
         int index = loginView.getCbxIdiomas().getSelectedIndex();
 
-        if (index >= 0 && index < 3) {
+        if (index >= 0 && index < clavesIdiomas.length) {
             mi.setLenguaje(clavesIdiomas[index], paisesIdiomas[index]);
             loginView.actualizarTextos();
         }

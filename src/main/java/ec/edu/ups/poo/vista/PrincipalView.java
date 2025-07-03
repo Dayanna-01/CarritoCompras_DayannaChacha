@@ -30,6 +30,8 @@ public class PrincipalView extends JFrame {
     private JMenuItem menuItemEspanol;
     private JMenuItem menuItemIngles;
     private JMenuItem menuItemFrances;
+    private JMenuItem menuItemkichwa;
+
     private String usuarioAutenticado;
     private MensajeInternacionalizacionHandler mi;
 
@@ -42,16 +44,17 @@ public class PrincipalView extends JFrame {
 
         // Barra de menú y menús
         menuBar = new JMenuBar();
-        menuCarrito = new JMenu("Carrito");
         menuProducto = new JMenu("Producto");
+        menuCarrito = new JMenu("Carrito");
         menuUsuario = new JMenu("Usuario");
         menuIdioma = new JMenu("Idioma");
         menuSalir = new JMenu("Salir");
 
-
         menuItemEspanol = new JMenuItem("Español");
         menuItemIngles = new JMenuItem("Ingles");
         menuItemFrances = new JMenuItem("Frances");
+        menuItemkichwa = new JMenuItem("Kichwa");
+
         menuItemCrearProducto = new JMenuItem("Crear Producto");
         menuItemEliminarProducto = new JMenuItem("Eliminar Producto");
         menuItemActualizarProducto = new JMenuItem("Actualizar Producto");
@@ -70,6 +73,8 @@ public class PrincipalView extends JFrame {
         menuIdioma.add(menuItemEspanol);
         menuIdioma.add(menuItemIngles);
         menuIdioma.add(menuItemFrances);
+        menuIdioma.add(menuItemkichwa);
+
         menuUsuario.add(menuItemCrearUsuario);
         menuUsuario.add(menuItemEliminarUsuario);
         menuUsuario.add(menuItemEditarUsuario);
@@ -85,8 +90,8 @@ public class PrincipalView extends JFrame {
         menuProducto.add(menuItemActualizarProducto);
         menuProducto.add(menuItemBuscarProducto);
 
-        menuBar.add(menuCarrito);
         menuBar.add(menuProducto);
+        menuBar.add(menuCarrito);
         menuBar.add(menuUsuario);
         menuBar.add(menuIdioma);
         menuBar.add(menuSalir);
@@ -127,6 +132,14 @@ public class PrincipalView extends JFrame {
 
     public void setMenuItemFrances(JMenuItem menuItemFrances) {
         this.menuItemFrances = menuItemFrances;
+    }
+
+    public JMenuItem getMenuItemkichwa() {
+        return menuItemkichwa;
+    }
+
+    public void setMenuItemkichwa(JMenuItem menuItemkichwa) {
+        this.menuItemkichwa = menuItemkichwa;
     }
 
     public JMenuItem getMenuItemListarUsuario() {

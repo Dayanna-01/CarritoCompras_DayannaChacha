@@ -136,6 +136,7 @@ public class LoginView extends JFrame{
         cbxIdiomas.addItem(mi.get("menu.idioma.es")); // Español
         cbxIdiomas.addItem(mi.get("menu.idioma.en")); // Inglés
         cbxIdiomas.addItem(mi.get("menu.idioma.fr")); // Francés
+        cbxIdiomas.addItem(mi.get("menu.idioma.kc")); // kichwa
         actualizarTextos();
     }
 
@@ -185,16 +186,24 @@ public class LoginView extends JFrame{
         btnRegistrar.setText(mi.get("login.boton.registrar"));
         btnOlvidar.setText(mi.get("login.boton.olvidar"));
         btnSalir.setText(mi.get("login.boton.salir"));
+
+        // Actualizar otros textos visibles si los hay
+        // ej: menuArchivo.setText(mi.get("menu.archivo"));
+        //     itemSalir.setText(mi.get("menuitem.salir"));
+
         Locale currentLocale = mi.getLocale();
         int selectedIndex = 0;
         if ("en".equals(currentLocale.getLanguage()) && "US".equals(currentLocale.getCountry())) {
             selectedIndex = 1;
         } else if ("fr".equals(currentLocale.getLanguage()) && "FR".equals(currentLocale.getCountry())) {
             selectedIndex = 2;
+        } else if ("qu".equals(currentLocale.getLanguage()) && "EC".equals(currentLocale.getCountry())) {
+            selectedIndex = 3;
         }
         if (cbxIdiomas.getSelectedIndex() != selectedIndex) {
             cbxIdiomas.setSelectedIndex(selectedIndex);
         }
+
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));

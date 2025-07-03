@@ -22,8 +22,8 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
                 "12345",
                 Rol.ADMINISTRADOR,
                 "Administrador General",
-                "0999999999",
-                new GregorianCalendar(1980, Calendar.JANUARY, 1),
+                "0987654321",
+                new GregorianCalendar(1975, Calendar.JANUARY, 6),
                 "admin@gmail.com"
         );
 
@@ -32,8 +32,8 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
                 "12345",
                 Rol.USUARIO,
                 "Usuario de Prueba",
-                "0988888888",
-                new GregorianCalendar(1995, Calendar.JUNE, 15),
+                "0982654738",
+                new GregorianCalendar(1999, Calendar.JUNE, 21),
                 "user@gmail.com"
         );
         crear(admin);
