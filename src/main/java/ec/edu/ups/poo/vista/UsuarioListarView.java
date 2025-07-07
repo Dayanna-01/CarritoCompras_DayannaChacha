@@ -17,6 +17,7 @@ public class UsuarioListarView extends JInternalFrame {
     private JTable tblUsuarios;
     private JPanel panelPrincipal;
     private JLabel lblNombre;
+    private JLabel lblTitulo;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
 
@@ -35,6 +36,7 @@ public class UsuarioListarView extends JInternalFrame {
 
     public void cambiarIdioma() {
         setTitle(mi.get("usuario.listar.titulo"));
+        lblTitulo.setText(mi.get("usuario.listar.titulo"));
         lblNombre.setText(mi.get("usuario.listar.buscar"));
         btnBuscar.setText(mi.get("usuario.listar.boton.buscar"));
         btnListar.setText(mi.get("usuario.listar.boton.listar"));
@@ -54,6 +56,7 @@ public class UsuarioListarView extends JInternalFrame {
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
 
     public void cargarDatos(List<Usuario> listaUsuarios) {
         modelo.setNumRows(0);

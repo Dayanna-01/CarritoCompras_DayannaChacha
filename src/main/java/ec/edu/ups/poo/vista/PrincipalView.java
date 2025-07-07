@@ -137,7 +137,6 @@ public class PrincipalView extends JFrame {
     public JMenuItem getMenuItemkichwa() {
         return menuItemkichwa;
     }
-
     public void setMenuItemkichwa(JMenuItem menuItemkichwa) {
         this.menuItemkichwa = menuItemkichwa;
     }

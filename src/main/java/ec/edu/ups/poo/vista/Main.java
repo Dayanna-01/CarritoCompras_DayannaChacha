@@ -241,7 +241,7 @@ public class Main {
                         principalView.getMenuItemkichwa().addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                mi.setLenguaje("kc", "kichwa");
+                                mi.setLenguaje("qu", "EC");
                                 principalView.cambiarIdioma();
                                 usuarioController.actualizarIdiomaEnVistas();
                                 productoController.actualizarIdiomaEnVistas();

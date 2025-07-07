@@ -28,6 +28,7 @@ public class CarritoAñadirView extends JInternalFrame {
     private JLabel lblSubtotal;
     private JLabel lblIVA;
     private JLabel lblTotal;
+    private JLabel lblTitulo;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
 
@@ -57,6 +58,7 @@ public class CarritoAñadirView extends JInternalFrame {
         mi.setLenguaje(mi.getLocale().getLanguage(), mi.getLocale().getCountry());
 
         setTitle(mi.get("carrito.anadir.titulo"));
+        lblTitulo.setText(mi.get("carrito.anadir.titulo"));
         lblBuscarCodigo.setText(mi.get("carrito.anadir.buscar.codigo"));
         lblNombreProducto.setText(mi.get("carrito.anadir.nombre"));
         lblPrecioProducto.setText(mi.get("carrito.anadir.precio"));

@@ -60,7 +60,6 @@ public class ProductoAñadirView extends JInternalFrame{
         txtNombre.setText("");
         txtPrecio.setText("");
     }
-
     public void cambiarIdioma() {
         setTitle(mi.get("producto.anadir.titulo.ventana"));
         lblTitulo.setText(mi.get("producto.anadir.titulo"));

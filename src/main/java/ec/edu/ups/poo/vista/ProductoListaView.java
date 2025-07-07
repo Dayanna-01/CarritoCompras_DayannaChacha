@@ -17,6 +17,7 @@ public class ProductoListaView extends JInternalFrame {
     private JButton btnListar;
     private JTable tblProductos;
     private JLabel lblNombre;
+    private JLabel lblTitulo; //
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
     public ProductoListaView(MensajeInternacionalizacionHandler mi) {
@@ -102,21 +103,21 @@ public class ProductoListaView extends JInternalFrame {
         mi.setLenguaje(mi.getLocale().getLanguage(), mi.getLocale().getCountry());
 
         setTitle(mi.get("producto.lista.titulo.ventana"));
+        lblTitulo.setText(mi.get("producto.lista.titulo"));
         lblNombre.setText(mi.get("producto.lista.nombre"));
         btnBuscar.setText(mi.get("producto.lista.boton.buscar"));
         btnListar.setText(mi.get("producto.lista.boton.listar"));
-
         modelo.setColumnIdentifiers(new String[] {
                 mi.get("producto.lista.tabla.codigo"),
                 mi.get("producto.lista.tabla.nombre"),
                 mi.get("producto.lista.tabla.precio")
         });
-
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
 
     public void cargarDatos(List<Producto> listaProductos) {
         modelo.setNumRows(0);

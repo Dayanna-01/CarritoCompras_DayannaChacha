@@ -5,7 +5,7 @@ import ec.edu.ups.poo.modelo.Usuario;
 import java.util.List;
 
 public interface UsuarioDAO {
-    Usuario autenticar(String username, String contrasenia);
+    Usuario autenticar(String username, String contraseña);
 
     void crear(Usuario usuario);
 

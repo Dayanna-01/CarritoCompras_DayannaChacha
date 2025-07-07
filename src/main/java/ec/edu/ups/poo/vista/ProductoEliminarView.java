@@ -16,6 +16,7 @@ public class ProductoEliminarView extends JInternalFrame {
     private JLabel lblCodigo;
     private JLabel lblNombre;
     private JLabel lblPrecio;
+    private JLabel lblTitulo; //este hay que añadir
     private MensajeInternacionalizacionHandler mi;
 
     public ProductoEliminarView(MensajeInternacionalizacionHandler mi){
@@ -118,6 +119,7 @@ public class ProductoEliminarView extends JInternalFrame {
 
         setTitle(mi.get("producto.eliminar.titulo.ventana"));
 
+        if (lblTitulo != null) lblTitulo.setText(mi.get("producto.eliminar.titulo.label"));
         if (lblCodigo != null) lblCodigo.setText(mi.get("producto.eliminar.codigo"));
         if (lblNombre != null) lblNombre.setText(mi.get("producto.eliminar.nombre"));
         if (lblPrecio != null) lblPrecio.setText(mi.get("producto.eliminar.precio"));
@@ -127,9 +129,9 @@ public class ProductoEliminarView extends JInternalFrame {
 
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
-        UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
     public void inicializarImagenes(){
         URL buscar = ProductoEditarView.class.getClassLoader().getResource("imagenes/buscar.png");
         if (buscar != null) {

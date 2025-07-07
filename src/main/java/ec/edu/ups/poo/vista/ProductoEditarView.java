@@ -1,13 +1,12 @@
 package ec.edu.ups.poo.vista;
 
 import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
-import ec.edu.ups.poo.vista.UsuarioModificarView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.net.URL;
 
-public class ProductoEditarView extends JInternalFrame{
+public class ProductoEditarView extends JInternalFrame {
     private JPanel panelPrincipal;
     private JTextField txtBuscar;
     private JButton btnBuscar;
@@ -15,28 +14,77 @@ public class ProductoEditarView extends JInternalFrame{
     private JTextField txtNombre;
     private JTextField txtPrecio;
     private JButton btnActualizar;
+    private JLabel lblTitulo;
     private JLabel lblCodigo;
     private JLabel lblNombre;
     private JLabel lblPrecio;
     private JButton btnEliminar;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
+
     public ProductoEditarView(MensajeInternacionalizacionHandler mi) {
+        this.mi = mi; // Asignar primero el handler
+
         setContentPane(panelPrincipal);
-        setTitle("Edición de Productos");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
-        //setResizable(false);
-        //setLocation(100,500);
-        //setVisible(true);
-        //pack();
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setIconifiable(true);
-        this.mi = mi;
+
         cambiarIdioma();
         inicializarImagenes();
+    }
+
+    public void cambiarIdioma() {
+        setTitle(mi.get("producto.editar.titulo.ventana"));
+
+        if (lblTitulo != null) lblTitulo.setText(mi.get("producto.editar.titulo"));
+        if (lblCodigo != null) lblCodigo.setText(mi.get("producto.editar.codigo"));
+        if (lblNombre != null) lblNombre.setText(mi.get("producto.editar.nombre"));
+        if (lblPrecio != null) lblPrecio.setText(mi.get("producto.editar.precio"));
+
+        if (btnBuscar != null) btnBuscar.setText(mi.get("producto.editar.buscar"));
+        if (btnActualizar != null) btnActualizar.setText(mi.get("producto.editar.actualizar"));
+        if (btnEliminar != null) btnEliminar.setText(mi.get("producto.editar.eliminar"));
+
+        UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
+        UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
+        UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
+        UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
+
+        this.revalidate();
+        this.repaint();
+    }
+
+
+
+    public void inicializarImagenes() {
+        URL buscar = ProductoEditarView.class.getClassLoader().getResource("imagenes/buscar.png");
+        if (buscar != null) {
+            btnBuscar.setIcon(new ImageIcon(buscar));
+        }
+
+        URL editar = ProductoEditarView.class.getClassLoader().getResource("imagenes/editar.png");
+        if (editar != null) {
+            btnActualizar.setIcon(new ImageIcon(editar));
+        }
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public boolean mostrarMensajePregunta(String mensaje) {
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
+    }
+
+    public void limpiarCampos() {
+        txtNombre.setText("");
+        txtPrecio.setText("");
     }
 
     public JLabel getLblCodigo() {
@@ -127,51 +175,12 @@ public class ProductoEditarView extends JInternalFrame{
         this.modelo = modelo;
     }
 
-    public void mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
-    }
-    public boolean mostrarMensajePregunta(String mensaje) {
-        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        return respuesta == JOptionPane.YES_OPTION;
-    }
-    public void limpiarCampos() {
-        txtNombre.setText("");
-        txtPrecio.setText("");
+    public MensajeInternacionalizacionHandler getMi() {
+        return mi;
     }
 
-    public void cambiarIdioma() {
-        setTitle(mi.get("producto.editar.titulo.ventana"));
-
-        if (lblCodigo != null) lblCodigo.setText(mi.get("producto.editar.codigo"));
-        if (lblNombre != null) lblNombre.setText(mi.get("producto.editar.nombre"));
-        if (lblPrecio != null) lblPrecio.setText(mi.get("producto.editar.precio"));
-
-        if (btnBuscar != null) btnBuscar.setText(mi.get("producto.editar.buscar"));
-        if (btnActualizar != null) btnActualizar.setText(mi.get("producto.editar.actualizar"));
-        if (btnEliminar != null) btnEliminar.setText(mi.get("producto.editar.eliminar"));
-
-        UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
-        UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
-        UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
-        UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
+    public void setMi(MensajeInternacionalizacionHandler mi) {
+        this.mi = mi;
     }
 
-    public void inicializarImagenes(){
-        URL buscar = ProductoEditarView.class.getClassLoader().getResource("imagenes/buscar.png");
-        if (buscar != null) {
-            ImageIcon iconoBtnIniciarSesion = new ImageIcon(buscar);
-            btnBuscar.setIcon(iconoBtnIniciarSesion);
-        } else {
-            System.err.println("Error: No se ha cargado el icono de Login");
-        }
-
-        URL editar = ProductoEditarView.class.getClassLoader().getResource("imagenes/editar.png");
-        if (editar != null) {
-            ImageIcon iconoBtnIniciarSesion = new ImageIcon(editar);
-            btnActualizar.setIcon(iconoBtnIniciarSesion);
-        } else {
-            System.err.println("Error: No se ha cargado el icono de Login");
-        }
-    }
 }

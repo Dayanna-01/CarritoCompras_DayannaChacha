@@ -23,6 +23,10 @@ public class CarritoModificarView extends JInternalFrame {
     private JPanel panelPrincipal;
     private JLabel lblBuscarCodigo;
     private JLabel lblFecha;
+    private JLabel lblTitulo;
+    private JLabel lblSubtotal;
+    private JLabel lblIva;
+    private JLabel lblTotal;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
 
@@ -80,7 +84,7 @@ public class CarritoModificarView extends JInternalFrame {
         return respuesta == JOptionPane.YES_OPTION;
     }
 
-    public void cambiarIdioma(){
+    public void cambiarIdioma() {
         mi.setLenguaje(mi.getLocale().getLanguage(), mi.getLocale().getCountry());
 
         setTitle(mi.get("carrito.modificar.titulo.ventana"));
@@ -89,11 +93,16 @@ public class CarritoModificarView extends JInternalFrame {
         btnBuscar.setText(mi.get("carrito.modificar.boton.buscar"));
         btnEditar.setText(mi.get("carrito.modificar.boton.editar"));
 
+        lblTitulo.setText(mi.get("carrito.modificar.titulo.etiqueta"));
+        lblSubtotal.setText(mi.get("carrito.modificar.subtotal"));
+        lblIva.setText(mi.get("carrito.modificar.iva"));
+        lblTotal.setText(mi.get("carrito.modificar.total"));
+
         Object[] columnas = {
                 mi.get("carrito.modificar.columna.codigo"),
                 mi.get("carrito.modificar.columna.nombre"),
                 mi.get("carrito.modificar.columna.precio"),
-                mi.get("carrito.modificar.columna.cantidad")
+                mi.get("carrito.modificar.columna.cantidad"),
         };
         modelo.setColumnIdentifiers(columnas);
 
@@ -102,6 +111,7 @@ public class CarritoModificarView extends JInternalFrame {
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
 
     public void inicializarImagenes(){
         URL eliminar = CarritoModificarView.class.getClassLoader().getResource("imagenes/editar.png");

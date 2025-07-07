@@ -16,8 +16,10 @@ public class CarritoDetalleView extends JInternalFrame{
     private JTextField txtTotal;
     private JLabel lblDetalleCarrito;
     private JLabel lblSubtotal;
+    private JLabel lblIva;
     private JLabel lblIVA;
     private JLabel lblTotal;
+    private JScrollPane tblProducto;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
 
@@ -33,7 +35,6 @@ public class CarritoDetalleView extends JInternalFrame{
 
         modelo = new DefaultTableModel();
         tblProductos.setModel(modelo);
-
         this.mi = mi;
         cambiarIdioma();
     }
@@ -130,13 +131,13 @@ public class CarritoDetalleView extends JInternalFrame{
     }
 
     public void cambiarIdioma() {
-        mi.setLenguaje(mi.getLocale().getLanguage(), mi.getLocale().getCountry());
+        // Se asume que el idioma ya está configurado desde fuera con setLocale()
 
         setTitle(mi.get("carrito.detalle.titulo.ventana"));
-        lblDetalleCarrito.setText(mi.get("carrito.detalle.titulo"));
-        lblSubtotal.setText(mi.get("carrito.detalle.subtotal"));
-        lblIVA.setText(mi.get("carrito.detalle.iva"));
-        lblTotal.setText(mi.get("carrito.detalle.total"));
+        if (lblDetalleCarrito != null) lblDetalleCarrito.setText(mi.get("carrito.detalle.titulo"));
+        if (lblSubtotal != null) lblSubtotal.setText(mi.get("carrito.detalle.subtotal"));
+        if (lblIVA != null) lblIVA.setText(mi.get("carrito.detalle.iva"));
+        if (lblTotal != null) lblTotal.setText(mi.get("carrito.detalle.total"));
 
         Object[] columnas = {
                 mi.get("carrito.detalle.columna.codigo"),
@@ -146,12 +147,24 @@ public class CarritoDetalleView extends JInternalFrame{
                 mi.get("carrito.detalle.columna.subtotal")
         };
         modelo.setColumnIdentifiers(columnas);
-
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
-
-
     }
+
+    public void mostrarDetalles(Carrito carrito) {
+        if (carrito == null) return;
+
+        cargarDatos(carrito);
+
+        double subtotal = carrito.calcularSubtotal();
+        double iva = carrito.calcularIVA();
+        double total = carrito.calcularTotal();
+
+        txtSubTotal.setText(String.format("%.2f", subtotal));
+        txtIVA.setText(String.format("%.2f", iva));
+        txtTotal.setText(String.format("%.2f", total));
+    }
+
 }

@@ -26,6 +26,7 @@ public class CarritoEliminarView extends JInternalFrame {
     private JLabel lblSubtotal;
     private JLabel lblIVA;
     private JLabel lblTotal;
+    private JLabel lblTitulo;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
 
@@ -80,29 +81,35 @@ public class CarritoEliminarView extends JInternalFrame {
         modelo.setRowCount(0);
     }
 
-    public void cambiarIdioma(){
+    public void cambiarIdioma() {
         mi.setLenguaje(mi.getLocale().getLanguage(), mi.getLocale().getCountry());
-
         setTitle(mi.get("carrito.eliminar.titulo"));
+
+        lblTitulo.setText(mi.get("carrito.eliminar.titulo"));  // <- Aquí se actualiza el texto del label visible
+
         lblBuscarCodigo.setText(mi.get("carrito.eliminar.codigo"));
         lblFecha.setText(mi.get("carrito.eliminar.fecha"));
         lblSubtotal.setText(mi.get("carrito.eliminar.subtotal"));
         lblIVA.setText(mi.get("carrito.eliminar.iva"));
         lblTotal.setText(mi.get("carrito.eliminar.total"));
+
         btnBuscar.setText(mi.get("carrito.eliminar.boton.buscar"));
         btnEliminar.setText(mi.get("carrito.eliminar.boton.eliminar"));
 
-        modelo.setColumnIdentifiers(new Object[]{
+        modelo.setColumnIdentifiers(new Object[] {
                 mi.get("carrito.eliminar.tabla.codigo"),
                 mi.get("carrito.eliminar.tabla.nombre"),
                 mi.get("carrito.eliminar.tabla.precio"),
                 mi.get("carrito.eliminar.tabla.cantidad")
         });
+
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
+
 
     public void inicializarImagenes(){
         URL eliminar = CarritoEliminarView.class.getClassLoader().getResource("imagenes/eliminar.png");

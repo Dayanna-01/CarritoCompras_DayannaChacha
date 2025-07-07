@@ -29,11 +29,12 @@ public class UsuarioCrearView extends JInternalFrame {
     private MensajeInternacionalizacionHandler mi;
 
     public UsuarioCrearView(MensajeInternacionalizacionHandler mi) {
-        super("Registrar Usuarios", true,true,false,true);
+        super("Registrar Usuarios", true, true, false, true);
         this.mi = mi;
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
+
         spnDia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
         spnMes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
         spnAnio.setModel(new SpinnerNumberModel(2000, 1, 2100, 1));
@@ -44,19 +45,22 @@ public class UsuarioCrearView extends JInternalFrame {
                 limpiarCampos();
             }
         });
+
         cambiarIdioma();
         inicializarImagenes();
     }
+
     public void limpiarCampos() {
         txtUsername.setText("");
         txtContrasenia.setText("");
         txtNombre.setText("");
         txtCelular.setText("");
         txtCorreo.setText("");
-        spnDia.setValue(0);
-        spnMes.setValue(0);
-        spnAnio.setValue(0);
+        spnDia.setValue(1);   // Valor mínimo válido
+        spnMes.setValue(1);   // Valor mínimo válido
+        spnAnio.setValue(2000); // Valor inicial válido
     }
+
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
@@ -67,21 +71,21 @@ public class UsuarioCrearView extends JInternalFrame {
         return respuesta == JOptionPane.YES_OPTION;
     }
 
-    public void inicializarImagenes(){
+    public void inicializarImagenes() {
         URL aceptar = UsuarioCrearView.class.getClassLoader().getResource("imagenes/aceptar.png");
         if (aceptar != null) {
-            ImageIcon iconoBtnIniciarSesion = new ImageIcon(aceptar);
-            btnAceptar.setIcon(iconoBtnIniciarSesion);
+            ImageIcon iconoBtnAceptar = new ImageIcon(aceptar);
+            btnAceptar.setIcon(iconoBtnAceptar);
         } else {
-            System.err.println("Error: No se ha cargado el icono de Login");
+            System.err.println("Error: No se ha cargado el icono de aceptar");
         }
 
         URL limpiar = UsuarioCrearView.class.getClassLoader().getResource("imagenes/limpiar.png");
         if (limpiar != null) {
-            ImageIcon iconoBtnRegistrarse = new ImageIcon(limpiar);
-            btnLimpiar.setIcon(iconoBtnRegistrarse);
+            ImageIcon iconoBtnLimpiar = new ImageIcon(limpiar);
+            btnLimpiar.setIcon(iconoBtnLimpiar);
         } else {
-            System.err.println("Error: No se ha cargado el icono de Registrarse");
+            System.err.println("Error: No se ha cargado el icono de limpiar");
         }
     }
 
@@ -93,11 +97,17 @@ public class UsuarioCrearView extends JInternalFrame {
         btnAceptar.setText(mi.get("usuario.crear.aceptar"));
         btnLimpiar.setText(mi.get("usuario.crear.limpiar"));
 
+        lblNombre.setText(mi.get("usuario.crear.nombrecompleto"));     // <-- aquí
+        lblFecha.setText(mi.get("usuario.crear.fechanacimiento"));     // <-- aquí
+        lblCelular.setText(mi.get("usuario.crear.celular"));            // <-- aquí
+        lblCorreo.setText(mi.get("usuario.crear.correo"));              // <-- aquí
+
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
 
     public JTextField getTxtCorreo() {
         return txtCorreo;
@@ -236,11 +246,9 @@ public class UsuarioCrearView extends JInternalFrame {
     }
 
     public JButton getBtnSalir() {
-        return btnLimpiar;
+        return null;
     }
 
     public void setBtnSalir(JButton btnSalir) {
-        this.btnLimpiar = btnSalir;
     }
-
 }

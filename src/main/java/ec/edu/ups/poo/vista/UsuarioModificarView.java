@@ -15,7 +15,7 @@ public class UsuarioModificarView extends JInternalFrame {
     private JLabel lblBuscar;
     private JLabel lblUsername;
     private JLabel lblContrasenia;
-    private JLabel lblNombre;
+    private JLabel lblRol;
     private JTextField txtNombre;
     private JLabel lblFecha;
     private JSpinner spnDia;
@@ -25,6 +25,7 @@ public class UsuarioModificarView extends JInternalFrame {
     private JTextField txtCelular;
     private JLabel lblCorreo;
     private JTextField txtCorreo;
+    private JLabel lblTitulo;
     private MensajeInternacionalizacionHandler mi;
 
     public UsuarioModificarView(MensajeInternacionalizacionHandler mi) {
@@ -43,11 +44,18 @@ public class UsuarioModificarView extends JInternalFrame {
 
     public void cambiarIdioma() {
         setTitle(mi.get("usuario.modificar.titulo.ventana"));
+        lblTitulo.setText(mi.get("usuario.modificar.titulo"));
         lblBuscar.setText(mi.get("usuario.modificar.buscar"));
         lblUsername.setText(mi.get("usuario.modificar.nombre"));
         lblContrasenia.setText(mi.get("usuario.modificar.contrasena"));
         btnBuscar.setText(mi.get("usuario.modificar.buscar.btn"));
         btnEditar.setText(mi.get("usuario.modificar.editar.btn"));
+
+        lblRol.setText(mi.get("usuario.modificar.rol"));
+
+        lblFecha.setText(mi.get("usuario.modificar.fecha.nacimiento"));
+        lblCelular.setText(mi.get("usuario.modificar.celular"));
+        lblCorreo.setText(mi.get("usuario.modificar.correo"));
 
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));
@@ -129,11 +137,11 @@ public class UsuarioModificarView extends JInternalFrame {
     }
 
     public JLabel getLblNombre() {
-        return lblNombre;
+        return lblRol;
     }
 
     public void setLblNombre(JLabel lblNombre) {
-        this.lblNombre = lblNombre;
+        this.lblRol = lblNombre;
     }
 
     public JTextField getTxtNombre() {

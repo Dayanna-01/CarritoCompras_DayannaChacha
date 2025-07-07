@@ -19,6 +19,7 @@ public class CarritoListaView extends JInternalFrame{
     private JTable tblProductos;
     private JButton btnDetalle;
     private JLabel lblBuscarCodigo;
+    private JLabel lblTitulo;
     private DefaultTableModel modelo;
     private MensajeInternacionalizacionHandler mi;
     public CarritoListaView(MensajeInternacionalizacionHandler mi) {
@@ -123,6 +124,7 @@ public class CarritoListaView extends JInternalFrame{
         mi.setLenguaje(mi.getLocale().getLanguage(), mi.getLocale().getCountry());
 
         setTitle(mi.get("carrito.lista.titulo.ventana"));
+        lblTitulo.setText(mi.get("carrito.lista.lbl.titulo")); // <- Agregado
         lblBuscarCodigo.setText(mi.get("carrito.lista.buscar.codigo"));
         btnBuscar.setText(mi.get("carrito.lista.boton.buscar"));
         btnListar.setText(mi.get("carrito.lista.boton.listar"));
@@ -143,6 +145,7 @@ public class CarritoListaView extends JInternalFrame{
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
+
 
     public void inicializarImagenes(){
         URL eliminar = CarritoListaView.class.getClassLoader().getResource("imagenes/listar.png");

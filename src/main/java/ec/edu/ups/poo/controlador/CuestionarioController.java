@@ -20,8 +20,8 @@ public class CuestionarioController {
     private final CuestionarioRecuperarView recuperarView;
     private final CuestionarioDAO cuestionarioDAO;
     private Cuestionario cuestionario;
-    private List<Respuesta> preguntasAleatorias;
-    private List<Respuesta> respuestasCorrectas;
+    private List<Respuesta> Aleatorio;
+    private List<Respuesta> Correcto;
     private final MensajeInternacionalizacionHandler mi;
     private UsuarioDAO usuarioDAO;
     private boolean usuarioYaRegistrado;
@@ -48,7 +48,7 @@ public class CuestionarioController {
         this.cuestionarioView = null;
         this.cuestionario = cuestionarioDAO.buscarPorUsername(username);
         this.recuperarView = recuperarView;
-        this.respuestasCorrectas = new ArrayList<>();
+        this.Correcto = new ArrayList<>();
 
         if (cuestionario == null) {
             recuperarView.mostrarMensaje(mi.get("cuestionario.recuperar.noPreguntas"));
@@ -56,15 +56,15 @@ public class CuestionarioController {
             return;
         }
 
-        this.preguntasAleatorias = cuestionario.getRespuestas();
+        this.Aleatorio = cuestionario.getRespuestas();
 
-        for (int i = 0; i < preguntasAleatorias.size(); i++) {
+        for (int i = 0; i < Aleatorio.size(); i++) {
             String etiqueta = mi.get("cuestionario.pregunta");
             recuperarView.getCbxPreguntas().addItem(etiqueta + " " + (i + 1));
         }
 
-        if (!preguntasAleatorias.isEmpty()) {
-            recuperarView.getLblPregunta().setText(preguntasAleatorias.get(0).getEnunciado());
+        if (!Aleatorio.isEmpty()) {
+            recuperarView.getLblPregunta().setText(Aleatorio.get(0).getEnunciado());
         }
 
         configurarEventosRecuperar(contrasenia);
@@ -154,11 +154,11 @@ public class CuestionarioController {
 
     private void preguntasRecuperar(){
         int index = recuperarView.getCbxPreguntas().getSelectedIndex();
-        if (index >= 0 && index < preguntasAleatorias.size()) {
-            Respuesta r = preguntasAleatorias.get(index);
+        if (index >= 0 && index < Aleatorio.size()) {
+            Respuesta r = Aleatorio.get(index);
             recuperarView.getLblPregunta().setText(r.getEnunciado());
 
-            if (respuestasCorrectas.contains(r)) {
+            if (Correcto.contains(r)) {
                 recuperarView.getTxtRespuesta().setText(r.getRespuesta());
             } else {
                 recuperarView.getTxtRespuesta().setText("");
@@ -168,12 +168,12 @@ public class CuestionarioController {
 
     private void guardarRespuestasRecuperar() {
         int index = recuperarView.getCbxPreguntas().getSelectedIndex();
-        if (index < 0 || index >= preguntasAleatorias.size()) {
+        if (index < 0 || index >= Aleatorio.size()) {
             recuperarView.mostrarMensaje(mi.get("cuestionario.recuperar.preguntaInvalida"));
             return;
         }
 
-        Respuesta r = preguntasAleatorias.get(index);
+        Respuesta r = Aleatorio.get(index);
         String respuestaUsuario = recuperarView.getTxtRespuesta().getText().trim();
 
         if (respuestaUsuario.isEmpty()) {
@@ -182,8 +182,8 @@ public class CuestionarioController {
         }
 
         if (respuestaUsuario.equalsIgnoreCase(r.getRespuesta())) {
-            if (!respuestasCorrectas.contains(r)) {
-                respuestasCorrectas.add(r);
+            if (!Correcto.contains(r)) {
+                Correcto.add(r);
                 recuperarView.mostrarMensaje(mi.get("cuestionario.recuperar.correcta"));
                 r.setRespuesta(respuestaUsuario);
             } else {
@@ -195,7 +195,7 @@ public class CuestionarioController {
     }
 
     private void finalizarRecuperar(String contrasenia) {
-        if (respuestasCorrectas.size() >= 3) {
+        if (Correcto.size() >= 3) {
             recuperarView.mostrarMensaje(String.format(mi.get("cuestionario.recuperar.recuperada"), contrasenia));
             recuperarView.dispose();
         } else {
@@ -206,7 +206,7 @@ public class CuestionarioController {
     private void preguntasCuestionario(){
         int index = cuestionarioView.getCbxPreguntas().getSelectedIndex();
         if (index >= 0) {
-            Respuesta r = preguntasAleatorias.get(index);
+            Respuesta r = Aleatorio.get(index);
             cuestionarioView.getLblPregunta().setText(r.getEnunciado());
 
             Respuesta respondido = cuestionario.buscarRespuestaPorId(r.getId());
@@ -228,7 +228,7 @@ public class CuestionarioController {
             return;
         }
 
-        Respuesta seleccionada = preguntasAleatorias.get(index);
+        Respuesta seleccionada = Aleatorio.get(index);
         seleccionada.setRespuesta(texto);
 
         if (cuestionario.buscarRespuestaPorId(seleccionada.getId()) == null) {
@@ -239,7 +239,7 @@ public class CuestionarioController {
     }
 
     private void finalizar() {
-        if (preguntasAleatorias == null || preguntasAleatorias.isEmpty()) {
+        if (Aleatorio == null || Aleatorio.isEmpty()) {
             cuestionarioView.mostrarMensaje("Error: No se han cargado preguntas.");
             return;
         }
@@ -318,9 +318,9 @@ public class CuestionarioController {
     }
 
     private void cargarComboPreguntas() {
-        if (preguntasAleatorias != null && !preguntasAleatorias.isEmpty()) return;
+        if (Aleatorio != null && !Aleatorio.isEmpty()) return;
 
-        preguntasAleatorias = new ArrayList<>();
+        Aleatorio = new ArrayList<>();
 
         Cuestionario temporal = new Cuestionario("");
         temporal.aplicarIdioma(mi);
@@ -334,14 +334,14 @@ public class CuestionarioController {
         while (cantidadActual < cantidadDeseada) {
             int indice = random.nextInt(todasLasPreguntas.size());
             if (!usadas[indice]) {
-                preguntasAleatorias.add(todasLasPreguntas.get(indice));
+                Aleatorio.add(todasLasPreguntas.get(indice));
                 usadas[indice] = true;
                 cantidadActual++;
             }
         }
 
         cuestionarioView.getCbxPreguntas().removeAllItems();
-        for (Respuesta r : preguntasAleatorias) {
+        for (Respuesta r : Aleatorio) {
             cuestionarioView.getCbxPreguntas().addItem(r.getEnunciado());
         }
     }
