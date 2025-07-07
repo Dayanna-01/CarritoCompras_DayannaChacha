@@ -15,6 +15,11 @@
 Implementar un sistema educativo que simula un **carrito de compras**, utilizando buenas prácticas de diseño y una arquitectura desacoplada basada en **MVC** (Modelo-Vista-Controlador), **DAO** (Data Access Object) y principios de **POO** y **SOLID**.
 
 ---
+- Diagramas UML
+  ![image](https://github.com/user-attachments/assets/306f4443-3ea8-4140-a98d-bf76f0ba700c)
+  ![image](https://github.com/user-attachments/assets/e12ae31c-1a69-4bde-8ed1-4bae1b66ac64)
+
+
 
 ## 🛠️ Tecnologías utilizadas
 
