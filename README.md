@@ -7,6 +7,7 @@
 - Estudiante: Dayanna Chacha
 - Fecha: 16 de junio de 2025
 - Profesor: Ing. Gabriel Leon
+- Video: https://www.youtube.com/watch?v=5e99HJklmIg
 ---
 
 ## 🎯 Objetivo del proyecto
