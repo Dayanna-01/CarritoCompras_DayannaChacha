@@ -19,6 +19,10 @@ public class LoginView extends JFrame{
     private JLabel lblContrasenia;
     private JComboBox cbxIdiomas;
     private JLabel lblIdioma;
+    private JComboBox<String> cbxTipoAlmacenamiento;
+    private JTextField txtRutaArchivo;
+    private JLabel lblTipoAlmacenamiento;
+    private JLabel lblRutaArchivo;
     private MensajeInternacionalizacionHandler mi;
 
     public LoginView(MensajeInternacionalizacionHandler mi) {
@@ -209,5 +213,10 @@ public class LoginView extends JFrame{
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
-
+    public JComboBox<String> getCbxTipoAlmacenamiento() {
+        return cbxTipoAlmacenamiento;
+    }
+    public JTextField getTxtRutaArchivo() {
+        return txtRutaArchivo;
+    }
 }
