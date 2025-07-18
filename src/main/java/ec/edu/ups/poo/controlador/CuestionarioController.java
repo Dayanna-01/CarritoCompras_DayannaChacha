@@ -2,10 +2,7 @@ package ec.edu.ups.poo.controlador;
 
 import ec.edu.ups.poo.dao.CuestionarioDAO;
 import ec.edu.ups.poo.dao.UsuarioDAO;
-import ec.edu.ups.poo.modelo.Cuestionario;
-import ec.edu.ups.poo.modelo.Respuesta;
-import ec.edu.ups.poo.modelo.Rol;
-import ec.edu.ups.poo.modelo.Usuario;
+import ec.edu.ups.poo.modelo.*;
 import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 import ec.edu.ups.poo.vista.CuestionarioRecuperarView;
 import ec.edu.ups.poo.vista.CuestionarioView;
@@ -292,7 +289,8 @@ public class CuestionarioController {
             }
 
             GregorianCalendar fechaNacimiento = new GregorianCalendar(anio, mes - 1, dia);
-            Usuario nuevoUsuario = new Usuario(username, contrasenia, Rol.USUARIO, nombre, celular, fechaNacimiento, correo);
+            Usuario nuevoUsuario = null;
+            nuevoUsuario = new Usuario(username, contrasenia, Rol.USUARIO, nombre, celular, fechaNacimiento, correo);
             usuarioDAO.crear(nuevoUsuario);
         }
 

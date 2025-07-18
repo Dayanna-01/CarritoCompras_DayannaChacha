@@ -2,11 +2,13 @@ package ec.edu.ups.poo.modelo;
 
 import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Cuestionario {
+public class Cuestionario implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String username;
     private List<Respuesta> respuestas;
 
