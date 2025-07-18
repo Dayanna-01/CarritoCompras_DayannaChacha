@@ -2,6 +2,7 @@ package ec.edu.ups.poo.dao.impl;
 
 import ec.edu.ups.poo.dao.CuestionarioDAO;
 import ec.edu.ups.poo.dao.UsuarioDAO;
+import ec.edu.ups.poo.modelo.ExcepcionValidacion;
 import ec.edu.ups.poo.modelo.Rol;
 import ec.edu.ups.poo.modelo.Usuario;
 
@@ -12,7 +13,7 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
     private List<Usuario> usuarios;
     private CuestionarioDAO cuestionarioDAO;
 
-    public UsuarioDAOMemoria() {
+    public UsuarioDAOMemoria() throws ExcepcionValidacion {
         this.usuarios = new ArrayList<>();
         this.cuestionarioDAO = cuestionarioDAO;
 

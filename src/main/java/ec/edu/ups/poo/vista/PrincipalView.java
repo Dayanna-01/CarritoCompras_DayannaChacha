@@ -134,12 +134,9 @@ public class PrincipalView extends JFrame {
         this.menuItemFrances = menuItemFrances;
     }
 
-    public JMenuItem getMenuItemkichwa() {
-        return menuItemkichwa;
-    }
-    public void setMenuItemkichwa(JMenuItem menuItemkichwa) {
-        this.menuItemkichwa = menuItemkichwa;
-    }
+    public JMenuItem getMenuItemkichwa() { return menuItemkichwa; }
+
+    public void setMenuItemkichwa(JMenuItem menuItemkichwa) { this.menuItemkichwa = menuItemkichwa;}
 
     public JMenuItem getMenuItemListarUsuario() {
         return menuItemListarUsuario;
@@ -330,6 +327,4 @@ public class PrincipalView extends JFrame {
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
     }
-
-
 }

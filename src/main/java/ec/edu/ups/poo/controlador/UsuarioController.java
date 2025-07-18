@@ -2,6 +2,7 @@ package ec.edu.ups.poo.controlador;
 import ec.edu.ups.poo.dao.CuestionarioDAO;
 import ec.edu.ups.poo.dao.UsuarioDAO;
 import ec.edu.ups.poo.modelo.Cuestionario;
+import ec.edu.ups.poo.modelo.ExcepcionValidacion;
 import ec.edu.ups.poo.modelo.Rol;
 import ec.edu.ups.poo.modelo.Usuario;
 import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
@@ -88,7 +89,11 @@ public class UsuarioController {
         usuarioCrearView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                crear();
+                try {
+                    crear();
+                } catch (ExcepcionValidacion ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         usuarioEliminarView.getBtnEliminar().addActionListener(new ActionListener() {
@@ -112,7 +117,11 @@ public class UsuarioController {
         usuarioModificarView.getBtnEditar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                editar();
+                try {
+                    editar();
+                } catch (ExcepcionValidacion ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         usuarioListarView.getBtnListar().addActionListener(new ActionListener() {
@@ -259,7 +268,7 @@ public class UsuarioController {
     }
 
 
-    private void crear() {
+    private void crear() throws ExcepcionValidacion {
         boolean confirmado = usuarioCrearView.mostrarMensajePregunta(mi.get("usuario.mensaje.crear.pregunta"));
         if (!confirmado) {
             usuarioCrearView.mostrarMensaje(mi.get("usuario.mensaje.crear.cancelado"));
@@ -385,7 +394,7 @@ public class UsuarioController {
         }
     }
 
-    private void editar() {
+    private void editar() throws ExcepcionValidacion {
         boolean confirmado = usuarioModificarView.mostrarMensajePregunta(mi.get("usuario.mensaje.editar.pregunta"));
         if (!confirmado) return;
 

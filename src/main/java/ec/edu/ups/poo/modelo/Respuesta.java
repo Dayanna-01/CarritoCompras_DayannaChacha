@@ -1,9 +1,11 @@
 package ec.edu.ups.poo.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Respuesta {
+public class Respuesta implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String enunciado;
     private String respuesta;
