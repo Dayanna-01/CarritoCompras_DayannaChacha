@@ -368,7 +368,7 @@ public class CarritoController {
     }
 
     private void eliminarCarrito(){
-        boolean confirmado = carritoEliminarView.mostrarMensajePregunta(mi.get("carrito.msj.eliminar.confirmar"));
+            boolean confirmado = carritoEliminarView.mostrarMensajePregunta(mi.get("carrito.msj.eliminar.confirmar"));
         if(confirmado) {
             carritoDAO.eliminar(Integer.parseInt(carritoEliminarView.getTxtCodigo().getText()));
             carritoEliminarView.mostrarMensaje(mi.get("carrito.msj.eliminado"));

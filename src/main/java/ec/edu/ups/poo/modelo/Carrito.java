@@ -1,12 +1,14 @@
 package ec.edu.ups.poo.modelo;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Carrito {
+public class Carrito implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final double IVA = 0.12;
     //private static int contador = 1;
     private int codigo;
