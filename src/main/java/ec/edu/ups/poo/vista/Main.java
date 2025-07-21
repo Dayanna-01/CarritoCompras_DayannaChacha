@@ -36,7 +36,7 @@ import java.util.Locale;
 public class Main {
 
     /**
-     * Método principal que arranca la aplicación.
+     * Metodo principal que arranca la aplicación.
      * Configura el sistema de internacionalización y los DAOs según el tipo de almacenamiento seleccionado.
      *
      * @param args Argumentos de línea de comandos (no utilizados).
@@ -195,7 +195,7 @@ public class Main {
     }
 
     /**
-     * Metodo auxiliar que abre una ventana en el escritorio si no está visible.
+     * Método auxiliar que abre una ventana en el escritorio si no está visible.
      *
      * @param principalView Vista principal que contiene el escritorio.
      * @param internalView Vista interna a mostrar.
@@ -208,7 +208,7 @@ public class Main {
     }
 
     /**
-     * Metodo auxiliar que actualiza los textos de idioma en todas las vistas y controladores.
+     * Método auxiliar que actualiza los textos de idioma en todas las vistas y controladores.
      *
      * @param principalView Vista principal.
      * @param usuarioController Controlador de usuario.
