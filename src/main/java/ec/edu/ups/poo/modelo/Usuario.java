@@ -3,7 +3,10 @@ package ec.edu.ups.poo.modelo;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
-
+import ec.edu.ups.poo.util.Cedula;
+import ec.edu.ups.poo.util.Celular;
+import ec.edu.ups.poo.util.Contrasenia;
+import ec.edu.ups.poo.util.Email;
 /**
  * Clase que representa a un usuario del sistema, ya sea un administrador o consumidor.
  * Contiene información personal, credenciales de acceso y mecanismos de validación para asegurar consistencia y seguridad.

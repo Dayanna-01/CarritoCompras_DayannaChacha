@@ -1,4 +1,4 @@
-package ec.edu.ups.poo.modelo;
+package ec.edu.ups.poo.util;
 
 /**
  * Excepción personalizada que se lanza cuando una contraseña no cumple con los criterios de validación del sistema.

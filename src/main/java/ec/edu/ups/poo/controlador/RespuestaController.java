@@ -3,10 +3,9 @@ package ec.edu.ups.poo.controlador;
 import ec.edu.ups.poo.dao.PreguntaDAO;
 import ec.edu.ups.poo.dao.UsuarioDAO;
 import ec.edu.ups.poo.modelo.*;
-import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
+import ec.edu.ups.poo.util.*;
 import ec.edu.ups.poo.vista.CuestionarioRecuperarView;
 import ec.edu.ups.poo.vista.CuestionarioView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;

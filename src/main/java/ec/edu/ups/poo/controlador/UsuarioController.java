@@ -4,7 +4,7 @@ import ec.edu.ups.poo.dao.PreguntaDAO;
 import ec.edu.ups.poo.dao.UsuarioDAO;
 import ec.edu.ups.poo.modelo.*;
 import ec.edu.ups.poo.util.FormateadorUtils;
-import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
+import ec.edu.ups.poo.util.*;
 import ec.edu.ups.poo.vista.CuestionarioRecuperarView;
 import ec.edu.ups.poo.vista.CuestionarioView;
 import ec.edu.ups.poo.vista.*;
