@@ -86,7 +86,6 @@ public class Usuario {
     public void setUsername(String username) throws Cedula {
         if (!validarCedula(username)) {
             throw new Cedula("No es una cédula válida");
-
         } else {
             this.username = username;
         }

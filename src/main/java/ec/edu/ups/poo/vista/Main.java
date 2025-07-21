@@ -195,7 +195,7 @@ public class Main {
     }
 
     /**
-     * Método auxiliar que abre una ventana en el escritorio si no está visible.
+     * Metodo auxiliar que abre una ventana en el escritorio si no está visible.
      *
      * @param principalView Vista principal que contiene el escritorio.
      * @param internalView Vista interna a mostrar.
@@ -208,7 +208,7 @@ public class Main {
     }
 
     /**
-     * Método auxiliar que actualiza los textos de idioma en todas las vistas y controladores.
+     * Metodo auxiliar que actualiza los textos de idioma en todas las vistas y controladores.
      *
      * @param principalView Vista principal.
      * @param usuarioController Controlador de usuario.
