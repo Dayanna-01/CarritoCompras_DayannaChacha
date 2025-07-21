@@ -28,9 +28,16 @@ public class ProductoDAOArchivo implements ProductoDAO {
         try {
             if (!archivo.exists()) {
                 archivo.createNewFile();
-                crear(new Producto(1, "Prod A", 15));
-                crear(new Producto(2, "Prod B", 25));
-                crear(new Producto(3, "Prod C", 35));
+                crear(new Producto(1, "Laptop Dell Inspiron", 650.99));
+                crear(new Producto(2, "Smartphone Samsung Galaxy", 450.50));
+                crear(new Producto(3, "Teclado Mecánico Logitech", 75.25));
+                crear(new Producto(4, "Monitor LG 24 pulgadas", 180.75));
+                crear(new Producto(5, "Mouse Inalámbrico Microsoft", 25.99));
+                crear(new Producto(6, "Impresora HP DeskJet", 120.00));
+                crear(new Producto(7, "Auriculares Bose QC35", 299.99));
+                crear(new Producto(8, "Disco Duro Externo Seagate 1TB", 85.40));
+                crear(new Producto(9, "Router WiFi TP-Link", 50.00));
+                crear(new Producto(10, "Smartwatch Fitbit Versa", 199.95));;
             }
         } catch (IOException e) {
             e.printStackTrace();

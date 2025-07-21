@@ -120,7 +120,7 @@ public class UsuarioCrearView extends JInternalFrame {
         lblCelular.setText(mi.get("usuario.crear.celular"));
         lblCorreo.setText(mi.get("usuario.crear.correo"));
         btnAceptar.setText(mi.get("usuario.crear.aceptar"));
-        btnLimpiar.setText(mi.get("usuario.crear.limpiar"));
+
 
         UIManager.put("OptionPane.yesButtonText", mi.get("dialogo.boton.si"));
         UIManager.put("OptionPane.noButtonText", mi.get("dialogo.boton.no"));

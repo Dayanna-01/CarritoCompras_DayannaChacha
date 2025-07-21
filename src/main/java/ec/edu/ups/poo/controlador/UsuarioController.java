@@ -341,6 +341,9 @@ public class UsuarioController {
         }catch (Email e){
             System.out.println(e.getMessage());
             usuarioCrearView.mostrarMensaje(mi.get("usuario.validacion.correo"));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            usuarioCrearView.mostrarMensaje(mi.get("usuario.error.creacion"));
         }
     }
 
