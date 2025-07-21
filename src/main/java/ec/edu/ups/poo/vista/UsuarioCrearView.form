@@ -146,7 +146,7 @@
             </constraints>
             <properties>
               <foreground color="-16777216"/>
-              <text value="Usuario"/>
+              <text value="Cedula:"/>
             </properties>
           </component>
           <component id="10330" class="javax.swing.JTextField" binding="txtUsername">

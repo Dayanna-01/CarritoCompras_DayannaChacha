@@ -26,9 +26,9 @@ public class CuestionarioView extends JFrame {
     private JLabel lblNombre;
     private JLabel lblFecha;
     private JLabel lblCelular;
-    private JTextField txtUsername;
+    private JTextField txtCedula;
     private JTextField txtContrasenia;
-    private JLabel lblUsername;
+    private JLabel lblCedula;
     private JLabel lblContrasenia;
     private JButton BtnIniciarCuestionario;
     private JTextField txtCorreo;
@@ -85,7 +85,7 @@ public class CuestionarioView extends JFrame {
         lblNombre.setText(mi.get("cuestionario.nombre"));
         lblFecha.setText(mi.get("cuestionario.fecha"));
         lblCelular.setText(mi.get("cuestionario.celular"));
-        lblUsername.setText(mi.get("cuestionario.username"));
+        lblCedula.setText(mi.get("cuestionario.username"));
         lblContrasenia.setText(mi.get("cuestionario.contrasenia"));
         lblCorreo.setText(mi.get("cuestionario.correo"));
         BtnIniciarCuestionario.setText(mi.get("cuestionario.boton.iniciar"));
@@ -236,7 +236,7 @@ public class CuestionarioView extends JFrame {
      * @return JTextField del usuario.
      */
     public JTextField getTxtUsername() {
-        return txtUsername;
+        return txtCedula;
     }
 
     /**
@@ -244,7 +244,7 @@ public class CuestionarioView extends JFrame {
      * @param txtUsername JTextField del usuario.
      */
     public void setTxtUsername(JTextField txtUsername) {
-        this.txtUsername = txtUsername;
+        this.txtCedula = txtUsername;
     }
 
     /**
@@ -284,7 +284,7 @@ public class CuestionarioView extends JFrame {
      * @return JLabel del usuario.
      */
     public JLabel getLblUsername() {
-        return lblUsername;
+        return lblCedula;
     }
 
     /**
@@ -292,7 +292,7 @@ public class CuestionarioView extends JFrame {
      * @param lblUsername JLabel.
      */
     public void setLblUsername(JLabel lblUsername) {
-        this.lblUsername = lblUsername;
+        this.lblCedula = lblUsername;
     }
 
     /**
