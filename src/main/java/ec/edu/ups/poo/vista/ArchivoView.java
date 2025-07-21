@@ -13,7 +13,7 @@ import java.util.Locale;
  * y el idioma de la aplicación. Permite elegir entre almacenamiento en memoria o en archivo.
  * También gestiona la carga de íconos y textos traducidos mediante un handler de internacionalización.
  */
-public class ArchivoView extends JFrame{
+public class ArchivoView extends JFrame {
     private JLabel lblTitulo;
     private JComboBox cbxTiposGuardado;
     private JLabel lblArchivo;
@@ -23,13 +23,14 @@ public class ArchivoView extends JFrame{
     private JLabel lblIdioma;
     private JPanel panelPrincipal;
     private MensajeInternacionalizacionHandler mi;
+
     /**
      * Constructor de la clase ArchivoView. Inicializa la ventana, sus componentes,
      * íconos e idioma actual a través del handler de internacionalización.
      *
      * @param mi Handler de internacionalización para la carga de textos e idioma.
      */
-    public ArchivoView( MensajeInternacionalizacionHandler mi) {
+    public ArchivoView(MensajeInternacionalizacionHandler mi) {
         this.mi = mi;
         setTitle("Almacenamiento");
         setSize(600, 400);
@@ -40,6 +41,7 @@ public class ArchivoView extends JFrame{
         inicializarComponentes();
         registrarEventos();
     }
+
     /**
      * Registra eventos de cambio de idioma en el combo de selección de idiomas.
      * Al detectar un nuevo idioma, actualiza los textos de la interfaz.
@@ -53,6 +55,7 @@ public class ArchivoView extends JFrame{
             }
         });
     }
+
     /**
      * Inicializa los componentes gráficos como los combos de idioma y tipo de almacenamiento,
      * además sincroniza el idioma actual con el combo de selección.
@@ -68,6 +71,7 @@ public class ArchivoView extends JFrame{
         sincronizarComboIdiomaConLocale();
         actualizarTextos();
     }
+
     /**
      * Sincroniza el combo de idiomas con el idioma actual configurado en la aplicación.
      * Selecciona automáticamente el idioma correspondiente en el JComboBox.
@@ -81,11 +85,12 @@ public class ArchivoView extends JFrame{
         };
         cbxIdiomas.setSelectedIndex(selectedIndex);
     }
+
     /**
      * Carga las imágenes de los botones "Guardar" y "Salir" desde la carpeta de recursos.
      * Si no se encuentran los íconos, se imprime un error por consola.
      */
-    public void inicializarImagenes(){
+    public void inicializarImagenes() {
         URL ArchivoGURL = ArchivoView.class.getClassLoader().getResource("imagenes/guardar.png");
         if (ArchivoGURL != null) {
             ImageIcon iconoBtnGuardar = new ImageIcon(ArchivoGURL);
@@ -101,6 +106,7 @@ public class ArchivoView extends JFrame{
             System.err.println("Error: No se ha cargado el icono de Login");
         }
     }
+
     /**
      * Actualiza los textos de la interfaz gráfica usando los valores del archivo de internacionalización.
      */
@@ -117,12 +123,18 @@ public class ArchivoView extends JFrame{
         UIManager.put("OptionPane.cancelButtonText", mi.get("dialogo.boton.cancelar"));
         UIManager.put("OptionPane.okButtonText", mi.get("dialogo.boton.aceptar"));
 
+        UIManager.put("FileChooser.openDialogTitleText", mi.get("selector.directorio.titulo"));
+        UIManager.put("FileChooser.openButtonText", mi.get("selector.directorio.abrir"));
+        UIManager.put("FileChooser.cancelButtonText", mi.get("selector.directorio.cancelar"));
+        UIManager.put("FileChooser.lookInLabelText", mi.get("selector.directorio.buscarEn"));
+
         int selectedIndex = cbxTiposGuardado.getSelectedIndex();
         cbxTiposGuardado.removeAllItems();
         cbxTiposGuardado.addItem(mi.get("memoria"));
         cbxTiposGuardado.addItem(mi.get("archivo"));
         cbxTiposGuardado.setSelectedIndex(selectedIndex);
     }
+
     /**
      * Muestra un mensaje emergente con el texto especificado.
      *
@@ -131,6 +143,7 @@ public class ArchivoView extends JFrame{
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
     /**
      * Obtiene el tipo de almacenamiento seleccionado en el combo.
      *
@@ -140,6 +153,7 @@ public class ArchivoView extends JFrame{
         int index = cbxTiposGuardado.getSelectedIndex();
         return index == 0 ? "memoria" : "archivo";
     }
+
     /**
      * Obtiene el idioma seleccionado en el combo de idiomas.
      *
@@ -153,6 +167,7 @@ public class ArchivoView extends JFrame{
             default -> new Locale("es", "EC");
         };
     }
+
     /**
      * Asigna un listener al botón "Guardar".
      *
@@ -161,6 +176,7 @@ public class ArchivoView extends JFrame{
     public void setOnGuardar(ActionListener listener) {
         btnGuardar.addActionListener(listener);
     }
+
     /**
      * Asigna un listener al botón "Salir".
      *
@@ -172,6 +188,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el JLabel del título.
+     *
      * @return JLabel del título.
      */
     public JLabel getLblTitulo() {
@@ -180,6 +197,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el JLabel del título.
+     *
      * @param lblTitulo Nuevo JLabel del título.
      */
     public void setLblTitulo(JLabel lblTitulo) {
@@ -188,6 +206,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el JComboBox de tipos de guardado.
+     *
      * @return JComboBox de tipo de almacenamiento.
      */
     public JComboBox getCbxTiposGuardado() {
@@ -196,6 +215,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el JComboBox de tipos de guardado.
+     *
      * @param cbxTiposGuardado Nuevo JComboBox de almacenamiento.
      */
     public void setCbxTiposGuardado(JComboBox cbxTiposGuardado) {
@@ -204,6 +224,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el JLabel de la ruta de archivo.
+     *
      * @return JLabel de archivo.
      */
     public JLabel getLblArchivo() {
@@ -212,6 +233,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el JLabel de la ruta de archivo.
+     *
      * @param lblArchivo Nuevo JLabel de archivo.
      */
     public void setLblArchivo(JLabel lblArchivo) {
@@ -220,6 +242,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el botón "Guardar".
+     *
      * @return JButton para guardar.
      */
     public JButton getBtnGuardar() {
@@ -228,6 +251,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el botón "Guardar".
+     *
      * @param btnGuardar Nuevo botón de guardar.
      */
     public void setBtnGuardar(JButton btnGuardar) {
@@ -236,6 +260,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el botón "Salir".
+     *
      * @return JButton para salir.
      */
     public JButton getBtnSalir() {
@@ -244,6 +269,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el botón "Salir".
+     *
      * @param btnSalir Nuevo botón de salir.
      */
     public void setBtnSalir(JButton btnSalir) {
@@ -252,6 +278,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el JComboBox de selección de idiomas.
+     *
      * @return JComboBox de idiomas.
      */
     public JComboBox getCbxIdiomas() {
@@ -260,6 +287,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el JComboBox de selección de idiomas.
+     *
      * @param cbxIdiomas Nuevo JComboBox de idiomas.
      */
     public void setCbxIdiomas(JComboBox cbxIdiomas) {
@@ -268,6 +296,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el JLabel del idioma.
+     *
      * @return JLabel del idioma.
      */
     public JLabel getLblIdioma() {
@@ -276,6 +305,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el JLabel del idioma.
+     *
      * @param lblIdioma Nuevo JLabel de idioma.
      */
     public void setLblIdioma(JLabel lblIdioma) {
@@ -284,6 +314,7 @@ public class ArchivoView extends JFrame{
 
     /**
      * Obtiene el panel principal de la ventana.
+     *
      * @return JPanel principal.
      */
     public JPanel getPanelPrincipal() {
@@ -292,10 +323,10 @@ public class ArchivoView extends JFrame{
 
     /**
      * Establece el panel principal de la ventana.
+     *
      * @param panelPrincipal Nuevo JPanel principal.
      */
     public void setPanelPrincipal(JPanel panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
     }
-
 }
