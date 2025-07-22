@@ -4,45 +4,64 @@ import ec.edu.ups.poo.dao.ProductoDAO;
 import ec.edu.ups.poo.modelo.Producto;
 import ec.edu.ups.poo.util.FormateadorUtils;
 import ec.edu.ups.poo.util.MensajeInternacionalizacionHandler;
-import ec.edu.ups.poo.vista.CarritoAñadirView;
-import ec.edu.ups.poo.vista.ProductoAñadirView;
+import ec.edu.ups.poo.vista.CarritoAnadirView;
+import ec.edu.ups.poo.vista.ProductoAnadirView;
 import ec.edu.ups.poo.vista.ProductoEditarView;
 import ec.edu.ups.poo.vista.ProductoEliminarView;
 import ec.edu.ups.poo.vista.ProductoListaView;
 
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Locale;
 
-
+/**
+ * Controlador encargado de gestionar todas las operaciones relacionadas con productos.
+ * Coordina las interacciones entre las vistas de productos (añadir, listar, editar, eliminar)
+ * y el DAO de productos. Maneja validaciones, operaciones CRUD y cambios de idioma.
+ */
 public class ProductoController {
-    private final ProductoAñadirView productoAñadirView;
+    private final ProductoAnadirView productoAnadirView;
     private final ProductoListaView productoListaView;
     private final ProductoDAO productoDAO;
     private final ProductoEditarView productoEditarView;
     private final ProductoEliminarView productoEliminarView;
-    private final CarritoAñadirView carritoAñadirView;
+    private final CarritoAnadirView carritoAnadirView;
     private final MensajeInternacionalizacionHandler mi;
 
-
+    /**
+     * Constructor del controlador de productos. Inicializa las vistas y DAOs necesarios,
+     * y configura los eventos para las acciones del usuario.
+     *
+     * @param productoDAO DAO para operaciones con productos.
+     * @param productoAnadirView Vista para añadir nuevos productos.
+     * @param productoListaView Vista para listar productos existentes.
+     * @param productoGestionView Vista para editar productos.
+     * @param productoEliminarView Vista para eliminar productos.
+     * @param carritoAnadirView Vista del carrito para búsqueda de productos.
+     * @param mi Handler de internacionalización de mensajes.
+     */
     public ProductoController(ProductoDAO productoDAO,
-                              ProductoAñadirView productoAñadirView,
+                              ProductoAnadirView productoAnadirView,
                               ProductoListaView productoListaView,
                               ProductoEditarView productoGestionView, ProductoEliminarView productoEliminarView,
-                              CarritoAñadirView carritoAñadirView, MensajeInternacionalizacionHandler mi) {
+                              CarritoAnadirView carritoAnadirView, MensajeInternacionalizacionHandler mi) {
         this.productoDAO = productoDAO;
-        this.productoAñadirView = productoAñadirView;
+        this.productoAnadirView = productoAnadirView;
         this.productoListaView = productoListaView;
         this.productoEditarView = productoGestionView;
         this.productoEliminarView = productoEliminarView;
-        this.carritoAñadirView = carritoAñadirView;
+        this.carritoAnadirView = carritoAnadirView;
         this.mi = mi;
         configurarEventos();
     }
-
-
+    /**
+     * Configura los listeners para los botones de acción en todas las vistas de productos.
+     * Asocia cada botón con su correspondiente método de acción.
+     */
     private void configurarEventos() {
-        productoAñadirView.getBtnAceptar().addActionListener(new ActionListener() {
+        productoAnadirView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 guardarProducto();
@@ -91,50 +110,54 @@ public class ProductoController {
                 buscarProductoEliminar();
             }
         });
-        carritoAñadirView.getBtnBuscar().addActionListener(new ActionListener() {
+        carritoAnadirView.getBtnBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buscarProductoCarrito();
             }
         });
     }
-
+    /**
+     * Valida y guarda un nuevo producto en la base de datos.
+     * Realiza validaciones de campos vacíos, formato de código y precio,
+     * y verifica que no exista un producto con el mismo código.
+     */
     private void guardarProducto() {
-        String codigoTexto = productoAñadirView.getTxtCodigo().getText().trim();
-        String nombre = productoAñadirView.getTxtNombre().getText().trim();
-        String precioTexto = productoAñadirView.getTxtPrecio().getText().trim();
+        String codigoTexto = productoAnadirView.getTxtCodigo().getText().trim();
+        String nombre = productoAnadirView.getTxtNombre().getText().trim();
+        String precioTexto = productoAnadirView.getTxtPrecio().getText().trim();
 
         if (codigoTexto.isEmpty() || nombre.isEmpty() || precioTexto.isEmpty()) {
-            productoAñadirView.mostrarMensaje(mi.get("producto.mensaje.campos.vacios"));
+            productoAnadirView.mostrarMensaje(mi.get("producto.mensaje.campos.vacios"));
             return;
         }
 
         if (!codigoTexto.matches("[1-9]\\d*|0")) {//sin letras, sin decimales
-            productoAñadirView.mostrarMensaje(mi.get("producto.mensaje.codigo.invalido"));
+            productoAnadirView.mostrarMensaje(mi.get("producto.mensaje.codigo.invalido"));
             return;
         }
 
         int codigo = Integer.parseInt(codigoTexto);
         if (!precioTexto.matches("\\d+(\\.\\d+)?")) {//número decimal positivo
-            productoAñadirView.mostrarMensaje(mi.get("producto.mensaje.precio.invalido"));
+            productoAnadirView.mostrarMensaje(mi.get("producto.mensaje.precio.invalido"));
             return;
         }
 
         double precio = Double.parseDouble(precioTexto);
         if (productoDAO.buscarPorCodigo(codigo) != null) {
-            productoAñadirView.mostrarMensaje(mi.get("producto.mensaje.error.codigo.existe"));
+            productoAnadirView.mostrarMensaje(mi.get("producto.mensaje.error.codigo.existe"));
             return;
         }
 
         productoDAO.crear(new Producto(codigo, nombre, precio));
-        productoAñadirView.mostrarMensaje(mi.get("producto.mensaje.guardado.correctamente"));
-        productoAñadirView.limpiarCampos();
-        productoAñadirView.mostrarProductos(productoDAO.listarTodos());
+        productoAnadirView.mostrarMensaje(mi.get("producto.mensaje.guardado.correctamente"));
+        productoAnadirView.limpiarCampos();
+        productoAnadirView.mostrarProductos(productoDAO.listarTodos());
     }
 
-
-
-
+    /**
+     * Busca productos por nombre y muestra los resultados en la vista de lista.
+     */
     private void buscarProducto() {
         String nombre = productoListaView.getTxtBuscar().getText();
 
@@ -142,11 +165,18 @@ public class ProductoController {
         productoListaView.cargarDatos(productosEncontrados);
     }
 
+    /**
+     * Lista todos los productos existentes en la base de datos.
+     */
     private void listarProductos() {
         List<Producto> productos = productoDAO.listarTodos();
         productoListaView.cargarDatos(productos);
     }
 
+    /**
+     * Actualiza los datos de un producto existente después de validar los campos
+     * y confirmar la operación con el usuario.
+     */
     private void actualizarProducto() {
         String txtCod = productoEditarView.getTxtBuscar().getText().trim();
         String nombre = productoEditarView.getTxtNombre().getText().trim();
@@ -187,6 +217,10 @@ public class ProductoController {
         productoEditarView.mostrarMensaje(mi.get("producto.mensaje.actualizado.correctamente"));
     }
 
+    /**
+     * Elimina un producto de la base de datos después de validar el código
+     * y confirmar la operación con el usuario.
+     */
     private void eliminarProducto() {
         String textCodigo = productoEliminarView.getTxtBuscar().getText().trim();
         if (textCodigo.isEmpty()) {
@@ -213,7 +247,9 @@ public class ProductoController {
         productoEliminarView.limpiarCampos();
     }
 
-
+    /**
+     * Busca un producto para eliminación y muestra sus datos en la vista correspondiente.
+     */
     private void buscarProductoEliminar() {
         String txtCod = productoEliminarView.getTxtBuscar().getText().trim();
 
@@ -239,7 +275,9 @@ public class ProductoController {
         }
     }
 
-
+    /**
+     * Busca un producto para edición y muestra sus datos en la vista correspondiente.
+     */
     private void buscarProductoEdicion() {
         String txtCod = productoEditarView.getTxtBuscar().getText().trim();
 
@@ -265,16 +303,19 @@ public class ProductoController {
         }
     }
 
+    /**
+     * Busca un producto desde la vista del carrito para poder agregarlo.
+     */
     private void buscarProductoCarrito() {
-        String txtCod = carritoAñadirView.getTxtBuscar().getText().trim();
+        String txtCod = carritoAnadirView.getTxtBuscar().getText().trim();
 
         if (txtCod.isEmpty()) {
-            carritoAñadirView.mostrarMensaje(mi.get("producto.mensaje.error.ingresar.codigo"));
+            carritoAnadirView.mostrarMensaje(mi.get("producto.mensaje.error.ingresar.codigo"));
             return;
         }
 
         if (!txtCod.matches("[1-9]\\d*|0")) {
-            carritoAñadirView.mostrarMensaje(mi.get("producto.mensaje.codigo.invalido"));
+            carritoAnadirView.mostrarMensaje(mi.get("producto.mensaje.codigo.invalido"));
             return;
         }
 
@@ -282,19 +323,39 @@ public class ProductoController {
         Producto producto = productoDAO.buscarPorCodigo(codigo);
 
         if (producto != null) {
-            carritoAñadirView.getTxtNombre().setText(producto.getNombre());
-            carritoAñadirView.getTxtPrecio().setText(FormateadorUtils.formatearMoneda(producto.getPrecio(), mi.getLocale()));
+            carritoAnadirView.getTxtNombre().setText(producto.getNombre());
+            carritoAnadirView.getTxtPrecio().setText(FormateadorUtils.formatearMoneda(producto.getPrecio(), mi.getLocale()));
         } else {
-            carritoAñadirView.mostrarMensaje(mi.get("producto.mensaje.no.encontrado"));
-            carritoAñadirView.limpiarCampos();
+            carritoAnadirView.mostrarMensaje(mi.get("producto.mensaje.no.encontrado"));
+            carritoAnadirView.limpiarCampos();
         }
     }
 
+    /**
+     * Actualiza los precios de los productos en la tabla de lista según el locale especificado.
+     * @param locale Locale para formatear los valores monetarios.
+     */
+    private void refrescarTablaListaProductos(Locale locale) {
+        DefaultTableModel modelo = (DefaultTableModel) productoListaView.getTblProductos().getModel();
+        int rowCount = modelo.getRowCount();
+
+        for (int i = 0; i < rowCount; i++) {
+            int codigo = (Integer) modelo.getValueAt(i, 0);
+            Producto producto = productoDAO.buscarPorCodigo(codigo);
+            if (producto != null) {
+                modelo.setValueAt(FormateadorUtils.formatearMoneda(producto.getPrecio(), locale), i, 2);
+            }
+        }
+    }
+
+    /**
+     * Actualiza el idioma en todas las vistas de productos y reformatea los datos según el nuevo locale.
+     */
     public void actualizarIdiomaEnVistas() {
-        productoAñadirView.cambiarIdioma();
+        productoAnadirView.cambiarIdioma();
         productoEditarView.cambiarIdioma();
         productoEliminarView.cambiarIdioma();
         productoListaView.cambiarIdioma();
+        refrescarTablaListaProductos(mi.getLocale());
     }
-
 }

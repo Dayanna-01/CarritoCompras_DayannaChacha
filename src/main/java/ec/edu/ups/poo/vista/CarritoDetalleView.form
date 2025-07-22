@@ -20,13 +20,11 @@
         </properties>
         <border type="none"/>
         <children>
-          <scrollpane id="44b1c" binding="tblProducto">
+          <scrollpane id="44b1c">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <background color="-2174012"/>
-            </properties>
+            <properties/>
             <border type="none"/>
             <children>
               <component id="d657e" class="javax.swing.JTable" binding="tblProductos">
@@ -59,24 +57,14 @@
               <text value="Subtotal:"/>
             </properties>
           </component>
-          <component id="6f45c" class="javax.swing.JLabel" binding="lblIva">
+          <component id="6f45c" class="javax.swing.JLabel" binding="lblIVA">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font style="1"/>
               <foreground color="-16777216"/>
-              <text value="IVA:"/>
-            </properties>
-          </component>
-          <component id="b4cab" class="javax.swing.JLabel" binding="lblTotal">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font style="1"/>
-              <foreground color="-16777216"/>
-              <text value="Total:"/>
+              <text value="IVA"/>
             </properties>
           </component>
           <component id="b687c" class="javax.swing.JTextField" binding="txtSubTotal">
@@ -109,6 +97,16 @@
               <enabled value="false"/>
             </properties>
           </component>
+          <component id="b4cab" class="javax.swing.JLabel" binding="lblTotal">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Total"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="76996" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -121,6 +119,16 @@
         </properties>
         <border type="none"/>
         <children>
+          <component id="bb4d3" class="javax.swing.JLabel" binding="lblDetalleCarrito">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="DialogInput" size="16" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Detalles de Carrito"/>
+            </properties>
+          </component>
           <hspacer id="c741d">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -131,16 +139,6 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="bb4d3" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="DialogInput" size="16" style="1"/>
-              <foreground color="-16777216"/>
-              <text value="DETALLES DEL CARRITO"/>
-            </properties>
-          </component>
         </children>
       </grid>
     </children>
