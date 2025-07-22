@@ -114,7 +114,7 @@ public class UsuarioCrearView extends JInternalFrame {
         setTitle(mi.get("usuario.crear.titulo.ventana"));
         lblTitulo.setText(mi.get("usuario.crear.titulo"));
         lblUsername.setText(mi.get("usuario.crear.nombre"));
-        lblContrasenia.setText(mi.get("usuario.crear.contrasena"));
+        lblContrasenia.setText(mi.get("usuario.crear.contrasenia"));
         lblNombre.setText(mi.get("usuario.crear.nombre.real"));
         lblFecha.setText(mi.get("usuario.crear.fecha"));
         lblCelular.setText(mi.get("usuario.crear.celular"));
